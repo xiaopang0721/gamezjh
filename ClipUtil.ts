@@ -11,6 +11,8 @@ module gamezjh {
         public static ADD_MONEY_XIQIAN: any;
         //HUD数字
         public static HUD_FONT: any;
+        //跟注，比牌数值
+        public static MAP_NUM_FONT:any;
 
 
         static init(): void {
@@ -52,6 +54,16 @@ module gamezjh {
                 clipX: 10,
                 space: -5
             };
+            //HUD数字
+            this.MAP_NUM_FONT = {
+                source: Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
+                url: Path_game_zjh.ui_zjh + "clip_gz.png",
+                clipWidth: 27,
+                clipHeight: 34,
+                clipX: 10,
+                space: -10
+            };
+            
         }
         private _clip: ClipCell;
         constructor(font: any) {
