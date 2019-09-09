@@ -3,7 +3,7 @@
 */
 module gamezjh.page {
 	export class ZhaJinHuaPageOld extends game.gui.base.Page {
-		private _viewUI: ui.game_ui.zhajinhua.ZhaJinHua_HUDUI;
+		private _viewUI: ui.nqp.game_ui.zhajinhua.ZhaJinHua_HUDUI;
 		private _player: any;
 		private _playerInfo: any;
 		private _leastTmep: any = [1, 5, 20, 50];
