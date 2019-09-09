@@ -12,11 +12,7 @@ module gamezjh.page {
 		static myinit(str: string) {
 			super.myinit(str);
 			ZjhClip.init();
-			if (WebConfig.baseplatform == PageDef.BASE_PLATFORM_TYPE_NQP) {
-				PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA] = ZhaJinHuaPage;
-			} else {
-				PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA] = ZhaJinHuaPageOld;
-			}
+			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA] = ZhaJinHuaPage;
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_MAP] = ZjhMapPage;
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_RULE] = ZjhRulePage;
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_XIQIAN] = ZjhXiQianPage;
