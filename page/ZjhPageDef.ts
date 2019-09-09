@@ -43,14 +43,6 @@ module gamezjh.page {
 				Path.custom_atlas_scene + 'chip.atlas',
 				PathGameTongyong.ui_tongyong_sk + "HeGuan2.sk",
 				PathGameTongyong.ui_tongyong_sk + "HeGuan2.png",
-				Path_game_zjh.ui_zjh + "sk/zjh_0.png",
-				Path_game_zjh.ui_zjh + "sk/zjh_0.sk",
-				Path_game_zjh.ui_zjh + "sk/zjh_1.png",
-				Path_game_zjh.ui_zjh + "sk/zjh_1.sk",
-				Path_game_zjh.ui_zjh + "sk/zjh_2.png",
-				Path_game_zjh.ui_zjh + "sk/zjh_2.sk",
-				Path_game_zjh.ui_zjh + "sk/zjh_3.png",
-				Path_game_zjh.ui_zjh + "sk/zjh_3.sk",
 
 
 				Path.map + 'pz_zjh.png',
