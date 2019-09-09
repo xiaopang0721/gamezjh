@@ -29,7 +29,7 @@ module gamezjh.page {
     }
 
     export class ZjhMapPage extends game.gui.base.Page {
-        private _viewUI: ui.game_ui.zhajinhua.ZhaJinHuaUI;
+        private _viewUI: ui.nqp.game_ui.zhajinhua.ZhaJinHuaUI;
         private _chipTemp: any = [2, 3, 5, 7];  //加注筹码
         private _zjhMgr: ZjhMgr;
         private _isAuto: boolean = false;   //是否自动跟注

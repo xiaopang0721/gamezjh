@@ -2,7 +2,7 @@
 * 炸金花
 */
 module gamezjh.page {
-    export class ZjhXiQianPage extends ui.game_ui.zhajinhua.component.XiQianUI {
+    export class ZjhXiQianPage extends ui.nqp.game_ui.zhajinhua.component.XiQianUI {
         private _zjhMgr: ZjhMgr;
         constructor(val: number, ZjhMgr: ZjhMgr) {
             super();
