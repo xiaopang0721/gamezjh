@@ -12,31 +12,35 @@ module gamezjh.page {
 		static myinit(str: string) {
 			super.myinit(str);
 			ZjhClip.init();
-			if (WebConfig.baseplatform == PageDef.BASE_PLATFORM_TYPE_NQP) {
-				PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA] = ZhaJinHuaPage;
-			} else {
-				PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA] = ZhaJinHuaPageOld;
-			}
+			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA] = ZhaJinHuaPage;
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_MAP] = ZjhMapPage;
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_RULE] = ZjhRulePage;
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_XIQIAN] = ZjhXiQianPage;
 			this["__needLoadAsset"] = [
 				PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
-				Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
-				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/yanhua.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
-				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/btn.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "pai.atlas",
-				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/bipai.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/fapai_1.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
-				Path.custom_atlas_scene + 'card.atlas',
-				Path.custom_atlas_scene + 'chip.atlas',
 				PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "logo.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
+				Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
+				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/yanhua.atlas",
+				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/btn.atlas",
+				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/bipai.atlas",
+				Path_game_zjh.ui_zjh_sk + "zjh_0.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_0.sk",
+				Path_game_zjh.ui_zjh_sk + "zjh_1.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_1.sk",
+				Path_game_zjh.ui_zjh_sk + "zjh_2.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_2.sk",
+				Path_game_zjh.ui_zjh_sk + "zjh_3.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_3.sk",
 
+				Path.custom_atlas_scene + 'card.atlas',
+				Path.custom_atlas_scene + 'chip.atlas',
 				PathGameTongyong.ui_tongyong_sk + "HeGuan2.sk",
 				PathGameTongyong.ui_tongyong_sk + "HeGuan2.png",
 				Path_game_zjh.ui_zjh + "sk/zjh_0.png",
