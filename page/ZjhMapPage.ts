@@ -73,12 +73,17 @@ module gamezjh.page {
                 PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
                 Path_game_zjh.atlas_game_ui + "zhajinhua/effect/btn.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "pai.atlas",
                 Path_game_zjh.atlas_game_ui + "zhajinhua/effect/bipai.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "general/effect/fapai_1.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
                 Path_game_zjh.music_zjh + "PK.mp3",
+                Path_game_zjh.ui_zjh_sk + "zjh_0.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_1.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_2.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_3.png",
             ];
         }
 
@@ -93,6 +98,40 @@ module gamezjh.page {
                 this._zjhMgr.on(ZjhMgr.XIQIAN_END, this, this.addMoneyXiQian);
             }
             this._game.playMusic(Path_game_zjh.music_zjh + MUSIC_PATH.bgMusic);
+            this.initClip();
+        }
+
+        //跟注数值
+        private _gzClip: ZjhClip;
+        //比牌数值
+        private _bpClip: ZjhClip;
+        private initClip(): void {
+            if (!this._gzClip) {
+                this._gzClip = new ZjhClip(ZjhClip.MAP_NUM_FONT);
+                this._gzClip.centerX = this._viewUI.clip_gz.centerX;
+                this._gzClip.centerY = this._viewUI.clip_gz.centerY;
+                this._viewUI.clip_gz.parent.addChild(this._gzClip);
+                this._viewUI.clip_gz.visible = false;
+            }
+            if (!this._bpClip) {
+                this._bpClip = new ZjhClip(ZjhClip.MAP_NUM_FONT);
+                this._bpClip.centerX = this._viewUI.cip_bp.centerX;
+                this._bpClip.centerY = this._viewUI.cip_bp.centerY;
+                this._viewUI.cip_bp.parent.addChild(this._bpClip);
+                this._viewUI.cip_bp.visible = false;
+            }
+        }
+        private clearClip(): void {
+            if (this._gzClip) {
+                this._gzClip.removeSelf();
+                this._gzClip.destroy();
+                this._gzClip = null;
+            }
+            if (this._bpClip) {
+                this._bpClip.removeSelf();
+                this._bpClip.destroy();
+                this._bpClip = null;
+            }
         }
 
         // 页面打开时执行函数
@@ -267,7 +306,7 @@ module gamezjh.page {
             this._isAuto = !this._isAuto;
             if (this._isAuto) {
                 Laya.timer.loop(1000, this, this.autoCall);
-                this._viewUI.btn_auto.label = "取消跟注";
+                this._viewUI.img_auto.skin = Path_game_zjh.ui_zjh + "tu_qxgz.png"; //"取消跟注";
                 this._viewUI.img_ani1.visible = true;
                 this._viewUI.ani1.play(1, true)
             }
@@ -275,7 +314,7 @@ module gamezjh.page {
                 this._viewUI.img_ani1.visible = false;
                 this._viewUI.ani1.gotoAndStop(0);
                 Laya.timer.clear(this, this.autoCall);
-                this._viewUI.btn_auto.label = "自动跟注";
+                this._viewUI.img_auto.skin = Path_game_zjh.ui_zjh + "tu_zdgz.png"//"自动跟注";
                 //防一下，就怕到你的瞬间，点了取消自动跟注
                 if (this._game.sceneObjectMgr.mainUnit.GetIndex() == this._mapInfo.GetCurrentBetPos()) {
                     this._viewUI.btn_compare.visible = true;
@@ -703,14 +742,24 @@ module gamezjh.page {
             this._viewUI.text_round.text = round + "/20轮";
             //比牌加注按钮
             let curBet = this._mapInfo.GetCurChip();
-            this._viewUI.btn_compare.label = "比牌";
-            this._viewUI.btn_call.label = "跟注";
+            // this._viewUI.btn_compare.label = "比牌";
+            this._viewUI.img_compare.x = 56;
+            this._bpClip.visible = false;
+            // this._viewUI.btn_call.label = "跟注";
+            this._viewUI.img_call.x = 59;
+            this._gzClip.visible = false;
             if (curBet > 0) {
                 if (mainUint.IsSeeCard()) {
                     curBet = curBet * 2
                 }
-                this._viewUI.btn_compare.label = curBet + "比牌";
-                this._viewUI.btn_call.label = curBet + "跟注";
+                // this._viewUI.btn_compare.label = curBet + "比牌";
+                this._bpClip.visible = true;
+                this._bpClip.setText(curBet.toString(), true);
+                this._viewUI.img_compare.x = 45 + this._bpClip.width;
+                // this._viewUI.btn_call.label = curBet + "跟注";
+                this._gzClip.visible = true;
+                this._gzClip.setText(curBet.toString(), true);
+                this._viewUI.img_call.x = 45 + this._gzClip.width;
                 if (this._game.sceneObjectMgr.mainUnit.GetMoney() < curBet) {
                     this._viewUI.btn_call.disabled = true;
                     this._viewUI.btn_add.disabled = true;
@@ -1491,7 +1540,7 @@ module gamezjh.page {
             this._settleGold = 0;
             this._xiQian = [];
             Laya.timer.clear(this, this.autoCall);
-            this._viewUI.btn_auto.label = "自动跟注";
+            // this._viewUI.btn_auto.label = "自动跟注";
             this._isDeal = false;
             this._viewUI.btn_call.disabled = false;
             this._viewUI.btn_add.disabled = false;
@@ -1532,6 +1581,7 @@ module gamezjh.page {
 
         public close(): void {
             if (this._viewUI) {
+                this.clearClip();
                 this._viewUI.btn_menu.off(LEvent.CLICK, this, this.onBtnClickWithTween);
                 this._viewUI.btn_add.off(LEvent.CLICK, this, this.onBtnClickWithTween);
                 this._viewUI.btn_closen.off(LEvent.CLICK, this, this.onBtnClickWithTween);
