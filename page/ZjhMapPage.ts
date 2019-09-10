@@ -80,6 +80,10 @@ module gamezjh.page {
                 PathGameTongyong.atlas_game_ui_tongyong + "general/effect/fapai_1.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
                 Path_game_zjh.music_zjh + "PK.mp3",
+                Path_game_zjh.ui_zjh_sk + "zjh_0.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_1.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_2.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_3.png",
             ];
         }
 
