@@ -939,7 +939,7 @@ module gamezjh.page {
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.qipai + type + ".mp3", false);
                                     if (idx == mainIdx) {
                                         this.onNotEnoughMoney();
-                                        this._zjhMgr.fanpai();
+                                        if (unit.IsSeeCard()) this._zjhMgr.gaipai();
                                         this._viewUI.img_choose.visible = false;
                                         this._viewUI.btn_continue.visible = true;
                                         this._viewUI.box_see.visible = false;

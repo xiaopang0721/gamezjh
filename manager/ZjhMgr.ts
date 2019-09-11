@@ -196,6 +196,14 @@ module gamezjh.manager {
 			}
 		}
 
+		//盖牌
+		gaipai() {
+			for (let index = 0; index < 3; index++) {
+				let element = this._cards[index];
+				element.gaipai();
+			}
+		}
+
 		//明牌
 		showCard(v: any, pos: number): void {
 			for (let i = 0; i < this._cards.length; i++) {
