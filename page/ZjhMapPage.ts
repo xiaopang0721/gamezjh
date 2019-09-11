@@ -81,9 +81,9 @@ module gamezjh.page {
                 PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
                 Path_game_zjh.music_zjh + "PK.mp3",
                 Path_game_zjh.ui_zjh_sk + "zjh_0.png",
-				Path_game_zjh.ui_zjh_sk + "zjh_1.png",
-				Path_game_zjh.ui_zjh_sk + "zjh_2.png",
-				Path_game_zjh.ui_zjh_sk + "zjh_3.png",
+                Path_game_zjh.ui_zjh_sk + "zjh_1.png",
+                Path_game_zjh.ui_zjh_sk + "zjh_2.png",
+                Path_game_zjh.ui_zjh_sk + "zjh_3.png",
             ];
         }
 
@@ -939,7 +939,7 @@ module gamezjh.page {
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.qipai + type + ".mp3", false);
                                     if (idx == mainIdx) {
                                         this.onNotEnoughMoney();
-                                        this._zjhMgr.fanpai();
+                                        if (unit.IsSeeCard()) this._zjhMgr.gaipai();
                                         this._viewUI.img_choose.visible = false;
                                         this._viewUI.btn_continue.visible = true;
                                         this._viewUI.box_see.visible = false;
