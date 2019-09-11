@@ -1033,8 +1033,14 @@ module gamezjh.page {
                                         }
                                         let curBet = this._mapInfo.GetCurChip();
                                         if (curBet > 0) {
-                                            this._viewUI.btn_compare.label = 2 * curBet + "比牌";
-                                            this._viewUI.btn_call.label = 2 * curBet + "跟注";
+                                            // this._viewUI.btn_compare.label = 2 * curBet + "比牌";
+                                            this._bpClip.visible = true;
+                                            this._bpClip.setText((2 * curBet).toString(), true);
+                                            this._viewUI.img_compare.x = 45 + this._bpClip.width;
+                                            // this._viewUI.btn_call.label = 2 * curBet + "跟注";
+                                            this._gzClip.visible = true;
+                                            this._gzClip.setText((2 * curBet).toString(), true);
+                                            this._viewUI.img_call.x = 45 + this._gzClip.width;
                                         }
                                     }
                                     let posIdx = (idx - mainIdx + 5) % 5;
