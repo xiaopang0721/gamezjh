@@ -755,11 +755,11 @@ module gamezjh.page {
                 // this._viewUI.btn_compare.label = curBet + "比牌";
                 this._bpClip.visible = true;
                 this._bpClip.setText(curBet.toString(), true);
-                this._viewUI.img_compare.x = 45 + this._bpClip.width;
+                this._viewUI.img_compare.x = 78;
                 // this._viewUI.btn_call.label = curBet + "跟注";
                 this._gzClip.visible = true;
                 this._gzClip.setText(curBet.toString(), true);
-                this._viewUI.img_call.x = 45 + this._gzClip.width;
+                this._viewUI.img_call.x = 78;
                 if (this._game.sceneObjectMgr.mainUnit.GetMoney() < curBet) {
                     this._viewUI.btn_call.disabled = true;
                     this._viewUI.btn_add.disabled = true;
@@ -1036,11 +1036,11 @@ module gamezjh.page {
                                             // this._viewUI.btn_compare.label = 2 * curBet + "比牌";
                                             this._bpClip.visible = true;
                                             this._bpClip.setText((2 * curBet).toString(), true);
-                                            this._viewUI.img_compare.x = 45 + this._bpClip.width;
+                                            this._viewUI.img_compare.x = 78;
                                             // this._viewUI.btn_call.label = 2 * curBet + "跟注";
                                             this._gzClip.visible = true;
                                             this._gzClip.setText((2 * curBet).toString(), true);
-                                            this._viewUI.img_call.x = 45 + this._gzClip.width;
+                                            this._viewUI.img_call.x = 78;
                                         }
                                     }
                                     let posIdx = (idx - mainIdx + 5) % 5;
@@ -1267,7 +1267,7 @@ module gamezjh.page {
             if (!this._valueClip.parent) this._viewUI.box_view.addChildAt(this._valueClip, deep);
             this._valueClip.pos(posX, posY);
             Laya.Tween.clearAll(this._valueClip);
-            Laya.Tween.to(this._valueClip, { y: posY - 70 }, 1000);
+            Laya.Tween.to(this._valueClip, { y: posY - 75 }, 1000);
         }
 
         //喜钱动画
