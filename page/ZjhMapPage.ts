@@ -1547,7 +1547,7 @@ module gamezjh.page {
             this._xiQian = [];
             Laya.timer.clear(this, this.autoCall);
             // this._viewUI.btn_auto.label = "自动跟注";
-            this._viewUI.img_auto.skin = Path_game_zjh.ui_zjh + "tu_qxgz.png";
+            this._viewUI.img_auto.skin = Path_game_zjh.ui_zjh + "tu_zdgz.png";
             this._isDeal = false;
             this._viewUI.btn_call.disabled = false;
             this._viewUI.btn_add.disabled = false;
