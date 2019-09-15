@@ -718,8 +718,7 @@ module gamezjh.page {
             this._isDeal = true;
             let betPos = this._mapInfo.GetCurrentBetPos();
             this._viewUI.btn_giveup.visible = true;
-            this._viewUI.view_paixie.visible = false;
-            this._viewUI.view_paixie.ani1.stop();
+            this._viewUI.view_paihe.ani2.gotoAndStop(0);
             if (idx == betPos) {
                 this._viewUI.btn_add.visible = true;
                 this._viewUI.btn_call.visible = true;
@@ -803,8 +802,7 @@ module gamezjh.page {
                 this._viewUI.text_info.visible = true;
                 this._viewUI.text_roomtype.visible = true;
                 this._viewUI.text_maxchip.visible = true;
-                this._viewUI.view_paixie.visible = true;
-                this._viewUI.view_paixie.ani1.play(1, true);
+                this._viewUI.view_paihe.ani2.play(0, true);
             }
             if (statue > MAP_STATUS.MAP_STATE_CARD) {
                 if (!this._game.sceneObjectMgr.mainUnit.IsGiveUp() && !this._game.sceneObjectMgr.mainUnit.IsIsDefeated() && this._isDeal && !this._isGiveUp) {
@@ -1520,7 +1518,6 @@ module gamezjh.page {
             this._viewUI.view_effect0.visible = false;
             this._viewUI.view_effect1.visible = false;
             this._viewUI.view_pk.visible = false;
-            this._viewUI.view_paixie.visible = false;
             this._viewUI.view_guzhu.ani1.stop();
             this._viewUI.view_win.ani1.stop();
             this._viewUI.view_compare.ani1.stop();
@@ -1529,7 +1526,7 @@ module gamezjh.page {
             this._viewUI.view_compare.view_win1.ani1.stop();
             this._viewUI.view_effect0.ani1.stop();
             this._viewUI.view_effect1.ani1.stop();
-            this._viewUI.view_paixie.ani1.stop();
+            this._viewUI.view_paihe.ani2.gotoAndStop(0);
             this._viewUI.view_paihe.cards.visible = false;
             this._viewUI.view_xipai.visible = false;
         }
