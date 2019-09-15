@@ -9,7 +9,7 @@ module gamezjh.page {
 	}
 
 	export class ZjhRulePage extends game.gui.base.Page {
-		private _viewUI: ui.game_ui.zhajinhua.ZhaJinHua_GuiZeUI;
+		private _viewUI: ui.nqp.game_ui.zhajinhua.ZhaJinHua_GuiZeUI;
 		constructor(v: Game, onOpenFunc?: Function, onCloseFunc?: Function) {
 			super(v, onOpenFunc, onCloseFunc);
 			this._isNeedBlack = true;

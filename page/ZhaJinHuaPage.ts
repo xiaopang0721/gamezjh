@@ -8,6 +8,7 @@ module gamezjh.page {
 		private _playerInfo: any;
 		private _difenTmep: any = [1, 5, 20, 50];
 		private _leastTmep: any = [20, 200, 500, 1000];
+		private _clipArr: any[] = [ClipUtil.HUD_FONT0, ClipUtil.HUD_FONT1, ClipUtil.HUD_FONT2, ClipUtil.HUD_FONT3];
 		private _difenClipList: ClipUtil[] = [];
 		private _leastClipList: ClipUtil[] = [];
 		private _zjhMgr: ZjhMgr;
@@ -21,6 +22,10 @@ module gamezjh.page {
 				PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "logo.atlas",
+				Path_game_zjh.ui_zjh_sk + "zjh_0.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_1.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_2.png",
+				Path_game_zjh.ui_zjh_sk + "zjh_3.png",
 			];
 			this._isNeedDuang = false;
 		}
@@ -37,14 +42,14 @@ module gamezjh.page {
 			}
 			for (let index = 0; index < 4; index++) {
 				if (!this._difenClipList[index]) {
-					this._difenClipList[index] = new ClipUtil(ClipUtil.HUD_FONT);
+					this._difenClipList[index] = new ClipUtil(this._clipArr[index]);
 					this._difenClipList[index].x = this._viewUI["txt_difen" + index].x;
 					this._difenClipList[index].y = this._viewUI["txt_difen" + index].y;
 					this._viewUI["txt_difen" + index].parent && this._viewUI["txt_difen" + index].parent.addChild(this._difenClipList[index]);
 					this._viewUI["txt_difen" + index].removeSelf();
 				}
 				if (!this._leastClipList[index]) {
-					this._leastClipList[index] = new ClipUtil(ClipUtil.HUD_FONT);
+					this._leastClipList[index] = new ClipUtil(this._clipArr[index]);
 					this._leastClipList[index].x = this._viewUI["txt_least" + index].x;
 					this._leastClipList[index].y = this._viewUI["txt_least" + index].y;
 					this._leastClipList[index].scale(0.8, 0.8);

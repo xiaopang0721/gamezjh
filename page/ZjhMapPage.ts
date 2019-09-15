@@ -29,7 +29,7 @@ module gamezjh.page {
     }
 
     export class ZjhMapPage extends game.gui.base.Page {
-        private _viewUI: ui.game_ui.zhajinhua.ZhaJinHuaUI;
+        private _viewUI: ui.nqp.game_ui.zhajinhua.ZhaJinHuaUI;
         private _chipTemp: any = [2, 3, 5, 7];  //加注筹码
         private _zjhMgr: ZjhMgr;
         private _isAuto: boolean = false;   //是否自动跟注
@@ -80,6 +80,10 @@ module gamezjh.page {
                 PathGameTongyong.atlas_game_ui_tongyong + "general/effect/fapai_1.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
                 Path_game_zjh.music_zjh + "PK.mp3",
+                Path_game_zjh.ui_zjh_sk + "zjh_0.png",
+                Path_game_zjh.ui_zjh_sk + "zjh_1.png",
+                Path_game_zjh.ui_zjh_sk + "zjh_2.png",
+                Path_game_zjh.ui_zjh_sk + "zjh_3.png",
             ];
         }
 
@@ -95,6 +99,7 @@ module gamezjh.page {
             }
             this._game.playMusic(Path_game_zjh.music_zjh + MUSIC_PATH.bgMusic);
             this.initClip();
+            this._viewUI.btn_menu.left = this._game.isFullScreen ? 25 : 10;
         }
 
         //跟注数值
@@ -714,8 +719,7 @@ module gamezjh.page {
             this._isDeal = true;
             let betPos = this._mapInfo.GetCurrentBetPos();
             this._viewUI.btn_giveup.visible = true;
-            this._viewUI.view_paixie.visible = false;
-            this._viewUI.view_paixie.ani1.stop();
+            this._viewUI.view_paihe.ani2.gotoAndStop(0);
             if (idx == betPos) {
                 this._viewUI.btn_add.visible = true;
                 this._viewUI.btn_call.visible = true;
@@ -751,11 +755,11 @@ module gamezjh.page {
                 // this._viewUI.btn_compare.label = curBet + "比牌";
                 this._bpClip.visible = true;
                 this._bpClip.setText(curBet.toString(), true);
-                this._viewUI.img_compare.x = 45 + this._bpClip.width;
+                this._viewUI.img_compare.x = 78;
                 // this._viewUI.btn_call.label = curBet + "跟注";
                 this._gzClip.visible = true;
                 this._gzClip.setText(curBet.toString(), true);
-                this._viewUI.img_call.x = 45 + this._gzClip.width;
+                this._viewUI.img_call.x = 78;
                 if (this._game.sceneObjectMgr.mainUnit.GetMoney() < curBet) {
                     this._viewUI.btn_call.disabled = true;
                     this._viewUI.btn_add.disabled = true;
@@ -799,8 +803,7 @@ module gamezjh.page {
                 this._viewUI.text_info.visible = true;
                 this._viewUI.text_roomtype.visible = true;
                 this._viewUI.text_maxchip.visible = true;
-                this._viewUI.view_paixie.visible = true;
-                this._viewUI.view_paixie.ani1.play(1, true);
+                this._viewUI.view_paihe.ani2.play(0, true);
             }
             if (statue > MAP_STATUS.MAP_STATE_CARD) {
                 if (!this._game.sceneObjectMgr.mainUnit.IsGiveUp() && !this._game.sceneObjectMgr.mainUnit.IsIsDefeated() && this._isDeal && !this._isGiveUp) {
@@ -893,7 +896,7 @@ module gamezjh.page {
                 TongyongPageDef.ins.alertRecharge(StringU.substitute("老板，您的金币少于{0}哦~\n补充点金币去大杀四方吧~", this._needChip[this._zjhStory.mapLv][1]), () => {
                     this._game.uiRoot.general.open(DatingPageDef.PAGE_CHONGZHI);
                 }, () => {
-                }, false, PathGameTongyong.ui_tongyong_general + "btn_cz.png");
+                }, true, TongyongPageDef.TIPS_SKIN_STR["cz"]);
             }
         }
 
@@ -935,7 +938,7 @@ module gamezjh.page {
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.qipai + type + ".mp3", false);
                                     if (idx == mainIdx) {
                                         this.onNotEnoughMoney();
-                                        this._zjhMgr.fanpai();
+                                        if (!unit.IsSeeCard()) this._zjhMgr.fanpai();
                                         this._viewUI.img_choose.visible = false;
                                         this._viewUI.btn_continue.visible = true;
                                         this._viewUI.box_see.visible = false;
@@ -1029,8 +1032,14 @@ module gamezjh.page {
                                         }
                                         let curBet = this._mapInfo.GetCurChip();
                                         if (curBet > 0) {
-                                            this._viewUI.btn_compare.label = 2 * curBet + "比牌";
-                                            this._viewUI.btn_call.label = 2 * curBet + "跟注";
+                                            // this._viewUI.btn_compare.label = 2 * curBet + "比牌";
+                                            this._bpClip.visible = true;
+                                            this._bpClip.setText((2 * curBet).toString(), true);
+                                            this._viewUI.img_compare.x = 78;
+                                            // this._viewUI.btn_call.label = 2 * curBet + "跟注";
+                                            this._gzClip.visible = true;
+                                            this._gzClip.setText((2 * curBet).toString(), true);
+                                            this._viewUI.img_call.x = 78;
                                         }
                                     }
                                     let posIdx = (idx - mainIdx + 5) % 5;
@@ -1257,7 +1266,7 @@ module gamezjh.page {
             if (!this._valueClip.parent) this._viewUI.box_view.addChildAt(this._valueClip, deep);
             this._valueClip.pos(posX, posY);
             Laya.Tween.clearAll(this._valueClip);
-            Laya.Tween.to(this._valueClip, { y: posY - 70 }, 1000);
+            Laya.Tween.to(this._valueClip, { y: posY - 75 }, 1000);
         }
 
         //喜钱动画
@@ -1510,7 +1519,6 @@ module gamezjh.page {
             this._viewUI.view_effect0.visible = false;
             this._viewUI.view_effect1.visible = false;
             this._viewUI.view_pk.visible = false;
-            this._viewUI.view_paixie.visible = false;
             this._viewUI.view_guzhu.ani1.stop();
             this._viewUI.view_win.ani1.stop();
             this._viewUI.view_compare.ani1.stop();
@@ -1519,7 +1527,7 @@ module gamezjh.page {
             this._viewUI.view_compare.view_win1.ani1.stop();
             this._viewUI.view_effect0.ani1.stop();
             this._viewUI.view_effect1.ani1.stop();
-            this._viewUI.view_paixie.ani1.stop();
+            this._viewUI.view_paihe.ani2.gotoAndStop(0);
             this._viewUI.view_paihe.cards.visible = false;
             this._viewUI.view_xipai.visible = false;
         }
@@ -1537,6 +1545,7 @@ module gamezjh.page {
             this._xiQian = [];
             Laya.timer.clear(this, this.autoCall);
             // this._viewUI.btn_auto.label = "自动跟注";
+            this._viewUI.img_auto.skin = Path_game_zjh.ui_zjh + "tu_zdgz.png";
             this._isDeal = false;
             this._viewUI.btn_call.disabled = false;
             this._viewUI.btn_add.disabled = false;

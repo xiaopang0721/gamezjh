@@ -168,7 +168,7 @@ module gamezjh.manager {
 				for (let i = 0; i < this._cards.length / 3; i++) {
 					let card = this._cards[index + i * 3];
 					//播音效
-					Laya.timer.once(100 * count, this, () => {
+					Laya.timer.once(120 * count, this, () => {
 						this._game.playSound(PathGameTongyong.music_tongyong + "fapai.mp3", false);
 						card.fapai();
 						this._cardIndex++;
@@ -193,6 +193,14 @@ module gamezjh.manager {
 			for (let index = 0; index < this._cards.length; index++) {
 				let element = this._cards[index];
 				element.fanpai();
+			}
+		}
+
+		//盖牌
+		gaipai() {
+			for (let index = 0; index < 3; index++) {
+				let element = this._cards[index];
+				element.gaipai();
 			}
 		}
 
