@@ -99,7 +99,8 @@ module gamezjh.page {
             }
             this._game.playMusic(Path_game_zjh.music_zjh + MUSIC_PATH.bgMusic);
             this.initClip();
-            this._viewUI.btn_menu.left = this._game.isFullScreen ? 25 : 10;
+            this._viewUI.btn_menu.left = this._game.isFullScreen ? 30 : 10;
+            this._viewUI.img_menu.left = this._game.isFullScreen ? 25 : 10;
         }
 
         //跟注数值
