@@ -529,7 +529,6 @@ module gamezjh.page {
                 if (unit) {
                     let name = getMainPlayerName(unit.GetName());
                     this._viewUI["view_head" + index].text_name.text = name;
-                    this._viewUI["view_head" + index].img_head.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + unit.GetHeadImg() + ".png";
                     let money = EnumToString.getPointBackNum(unit.GetMoney(), 2);
                     this._viewUI["view_head" + index].text_money.text = money;
                     this._viewUI["text_total" + index].text = unit.GetTotalChip().toString();
@@ -561,6 +560,7 @@ module gamezjh.page {
                         }
                     } else {
                         this._viewUI["view_head" + index].img_qifu.visible = false;
+                        this._viewUI["view_head" + index].img_head.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + unit.GetHeadImg() + ".png";
                     }
                 }
                 if (index >= 1) {
