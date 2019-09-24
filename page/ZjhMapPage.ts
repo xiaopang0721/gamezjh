@@ -737,24 +737,20 @@ module gamezjh.page {
             this._viewUI.text_round.text = round + "/20轮";
             //比牌加注按钮
             let curBet = this._mapInfo.GetCurChip();
-            // this._viewUI.btn_compare.label = "比牌";
             this._viewUI.img_compare.x = 56;
             this._bpClip.visible = false;
-            // this._viewUI.btn_call.label = "跟注";
             this._viewUI.img_call.x = 59;
             this._gzClip.visible = false;
             if (curBet > 0) {
                 if (mainUint.IsSeeCard()) {
                     curBet = curBet * 2
                 }
-                // this._viewUI.btn_compare.label = curBet + "比牌";
                 this._bpClip.visible = true;
                 this._bpClip.setText(curBet.toString(), true);
-                this._viewUI.img_compare.x = 78;
-                // this._viewUI.btn_call.label = curBet + "跟注";
+                this._viewUI.img_compare.x = 86;
                 this._gzClip.visible = true;
                 this._gzClip.setText(curBet.toString(), true);
-                this._viewUI.img_call.x = 78;
+                this._viewUI.img_call.x = 86;
                 if (this._game.sceneObjectMgr.mainUnit.GetMoney() < curBet) {
                     this._viewUI.btn_call.disabled = true;
                     this._viewUI.btn_add.disabled = true;
@@ -1027,14 +1023,12 @@ module gamezjh.page {
                                         }
                                         let curBet = this._mapInfo.GetCurChip();
                                         if (curBet > 0) {
-                                            // this._viewUI.btn_compare.label = 2 * curBet + "比牌";
                                             this._bpClip.visible = true;
                                             this._bpClip.setText((2 * curBet).toString(), true);
-                                            this._viewUI.img_compare.x = 78;
-                                            // this._viewUI.btn_call.label = 2 * curBet + "跟注";
+                                            this._viewUI.img_compare.x = 86;
                                             this._gzClip.visible = true;
                                             this._gzClip.setText((2 * curBet).toString(), true);
-                                            this._viewUI.img_call.x = 78;
+                                            this._viewUI.img_call.x = 86;
                                         }
                                     }
                                     let posIdx = (idx - mainIdx + 5) % 5;
