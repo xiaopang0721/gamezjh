@@ -528,9 +528,9 @@ module gamezjh.page {
                 this._viewUI["view_head" + index].visible = unit;
                 if (unit) {
                     let name = getMainPlayerName(unit.GetName());
-                    this._viewUI["view_head" + index].text_name.text = name;
+                    this._viewUI["view_head" + index].txt_name.text = name;
                     let money = EnumToString.getPointBackNum(unit.GetMoney(), 2);
-                    this._viewUI["view_head" + index].text_money.text = money;
+                    this._viewUI["view_head" + index].txt_money.text = money;
                     this._viewUI["text_total" + index].text = unit.GetTotalChip().toString();
                     //头像框
                     this._viewUI["view_head" + index].img_txk.visible = unit.GetVipLevel() > 0;
@@ -549,18 +549,18 @@ module gamezjh.page {
                             Laya.timer.once(2500, this, () => {
                                 this._viewUI["view_head" + index].img_qifu.visible = true;
                                 if (this._viewUI["view_head" + index].img_qifu.visible && unit.GetQiFuType()) {
-                                    this._viewUI["view_head" + index].img_head.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + this._nameStrInfo[unit.GetQiFuType() - 1] + ".png";
+                                    this._viewUI["view_head" + index].img_icon.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + this._nameStrInfo[unit.GetQiFuType() - 1] + ".png";
                                 }
                             })
                         } else {
                             this._viewUI["view_head" + index].img_qifu.visible = true;
                             if (this._viewUI["view_head" + index].img_qifu.visible && unit.GetQiFuType()) {
-                                this._viewUI["view_head" + index].img_head.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + this._nameStrInfo[unit.GetQiFuType() - 1] + ".png";
+                                this._viewUI["view_head" + index].img_icon.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + this._nameStrInfo[unit.GetQiFuType() - 1] + ".png";
                             }
                         }
                     } else {
                         this._viewUI["view_head" + index].img_qifu.visible = false;
-                        this._viewUI["view_head" + index].img_head.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + unit.GetHeadImg() + ".png";
+                        this._viewUI["view_head" + index].img_icon.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + unit.GetHeadImg() + ".png";
                     }
                 }
                 if (index >= 1) {
@@ -657,11 +657,11 @@ module gamezjh.page {
                 if (mPlayer) {
                     if (!mPlayer.playerInfo) return;
                     money = mPlayer.playerInfo.money;
-                    this._viewUI.view_head0.text_name.text = getMainPlayerName(mPlayer.playerInfo.nickname);
-                    this._viewUI.view_head0.img_head.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + mPlayer.playerInfo.headimg + ".png";
+                    this._viewUI.view_head0.txt_name.text = getMainPlayerName(mPlayer.playerInfo.nickname);
+                    this._viewUI.view_head0.img_icon.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + mPlayer.playerInfo.headimg + ".png";
                     this._viewUI.view_head0.img_qifu.visible = mPlayer.playerInfo.qifu_endtime > this._game.sync.serverTimeBys;
                     if (this._viewUI.view_head0.img_qifu.visible && mPlayer.playerInfo.qifu_type) {
-                        this._viewUI.view_head0.img_head.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + this._nameStrInfo[mPlayer.playerInfo.qifu_type - 1] + ".png";
+                        this._viewUI.view_head0.img_icon.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + this._nameStrInfo[mPlayer.playerInfo.qifu_type - 1] + ".png";
                     }
                     //头像框
                     this._viewUI.view_head0.img_txk.visible = mPlayer.playerInfo.vip_level > 0;
@@ -670,11 +670,11 @@ module gamezjh.page {
                     }
                 } else {
                     money = unitOffline.GetMoney();
-                    this._viewUI.view_head0.text_name.text = getMainPlayerName(unitOffline.GetName());
-                    this._viewUI.view_head0.img_head.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + unitOffline.GetHeadImg() + ".png";
+                    this._viewUI.view_head0.txt_name.text = getMainPlayerName(unitOffline.GetName());
+                    this._viewUI.view_head0.img_icon.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + unitOffline.GetHeadImg() + ".png";
                     this._viewUI.view_head0.img_qifu.visible = unitOffline.GetQiFuEndTime() > this._game.sync.serverTimeBys;
                     if (this._viewUI.view_head0.img_qifu.visible && unitOffline.GetQiFuType()) {
-                        this._viewUI.view_head0.img_head.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + this._nameStrInfo[unitOffline.GetQiFuType() - 1] + ".png";
+                        this._viewUI.view_head0.img_icon.skin = PathGameTongyong.ui_tongyong_touxiang + "head_" + this._nameStrInfo[unitOffline.GetQiFuType() - 1] + ".png";
                     }
                     //头像框
                     this._viewUI.view_head0.img_txk.visible = unitOffline.GetVipLevel() > 0;
@@ -683,7 +683,7 @@ module gamezjh.page {
                     }
                 }
                 money = EnumToString.getPointBackNum(money, 2);
-                this._viewUI.view_head0.text_money.text = money.toString();
+                this._viewUI.view_head0.txt_money.text = money.toString();
             }
         }
 
