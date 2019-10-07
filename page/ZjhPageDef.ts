@@ -25,7 +25,7 @@ module gamezjh.page {
 				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "logo.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
+				DatingPath.atlas_dating_ui + "qifu.atlas",
 				Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
 				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/yanhua.atlas",
 				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/btn.atlas",
