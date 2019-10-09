@@ -72,7 +72,7 @@ module gamezjh.page {
                 Path_game_zjh.atlas_game_ui + "zhajinhua/effect/yanhua.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
-                PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
+                DatingPath.atlas_dating_ui + "qifu.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
                 Path_game_zjh.atlas_game_ui + "zhajinhua/effect/btn.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "pai.atlas",
