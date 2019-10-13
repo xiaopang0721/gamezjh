@@ -534,7 +534,10 @@ module gamezjh.page {
                     viewHead.txt_money.text = money;
                     this._viewUI["text_total" + index].text = unit.GetTotalChip().toString();
                     //头像框
-                    viewHead.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(unit.GetHeadKuangImg(), 2);
+                    viewHead.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(unit.GetHeadKuangImg());
+                    //vip
+                    viewHead.img_vip.visible = unit.GetVipLevel() > 0;
+                    viewHead.img_vip.skin = TongyongUtil.getVipUrl(unit.GetVipLevel());
                     //祈福成功 头像上就有动画
                     if (qifu_index && posIdx == qifu_index) {
                         viewHead.qifu_type.visible = true;
@@ -655,14 +658,16 @@ module gamezjh.page {
                     this._viewUI.view_head0.img_icon.skin = TongyongUtil.getHeadUrl(mPlayer.playerInfo.headimg, 2);
                     this._viewUI.view_head0.img_qifu.visible = TongyongUtil.getIsHaveQiFu(mPlayer, this._game.sync.serverTimeBys);
                     //头像框
-                    this._viewUI.view_head0.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(mPlayer.playerInfo.headKuang, 2);
+                    this._viewUI.view_head0.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(mPlayer.playerInfo.headKuang);
+                    this._viewUI.view_head0.img_vip.visible = mPlayer.playerInfo.vip_level > 0;
+                    this._viewUI.view_head0.img_vip.skin = TongyongUtil.getVipUrl(mPlayer.playerInfo.vip_level);
                 } else {
                     money = unitOffline.GetMoney();
                     this._viewUI.view_head0.txt_name.text = getMainPlayerName(unitOffline.GetName());
                     this._viewUI.view_head0.img_icon.skin = TongyongUtil.getHeadUrl(unitOffline.GetHeadImg(), 2);
                     this._viewUI.view_head0.img_qifu.visible = TongyongUtil.getIsHaveQiFu(unitOffline, this._game.sync.serverTimeBys);
                     //头像框
-                    this._viewUI.view_head0.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(unitOffline.GetHeadKuangImg(), 2);
+                    this._viewUI.view_head0.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(unitOffline.GetHeadKuangImg());
                 }
                 money = EnumToString.getPointBackNum(money, 2);
                 this._viewUI.view_head0.txt_money.text = money.toString();
