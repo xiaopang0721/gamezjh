@@ -239,7 +239,11 @@ module gamezjh.page {
                     break;
                 case this._viewUI.btn_continue://继续游戏
                     //钱够不够
-                    if (this._game.sceneObjectMgr.mainUnit.GetMoney() >= this._needChip[this._zjhStory.mapLv][1]) {
+                    let money: number = this._game.sceneObjectMgr.mainPlayer.playerInfo.money;
+                    if (this._game.sceneObjectMgr.mainUnit) {
+                        money = this._game.sceneObjectMgr.mainUnit.GetMoney();
+                    }
+                    if (money >= this._needChip[this._zjhStory.mapLv][1]) {
                         if (this._game.sceneObjectMgr.mapInfo instanceof MapInfo) {
                             if (this._valueClip) {
                                 this._valueClip.removeSelf();
