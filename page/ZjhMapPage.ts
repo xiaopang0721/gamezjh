@@ -240,7 +240,7 @@ module gamezjh.page {
                 case this._viewUI.btn_continue://继续游戏
                     //钱够不够
                     let money = this._game.sceneObjectMgr.mainPlayer.playerInfo.money;
-                    if (this._game.sceneObjectMgr.mainUnit) {
+                    if (this._game.sceneObjectMgr.mainUnit && this._game.sceneObjectMgr.mapInfo) {
                         money = this._game.sceneObjectMgr.mainUnit.GetMoney();
                     }
                     if (money >= this._needChip[this._zjhStory.mapLv][1]) {
@@ -875,7 +875,7 @@ module gamezjh.page {
         private onNotEnoughMoney(): void {
             if (!this._game.sceneObjectMgr.mainPlayer) return;
             let money = this._game.sceneObjectMgr.mainPlayer.playerInfo.money;
-            if (this._game.sceneObjectMgr.mainUnit) {
+            if (this._game.sceneObjectMgr.mainUnit && this._game.sceneObjectMgr.mapInfo) {
                 money = this._game.sceneObjectMgr.mainUnit.GetMoney();
             }
             if (money < this._needChip[this._zjhStory.mapLv][1]) {
