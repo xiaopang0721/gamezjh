@@ -912,7 +912,7 @@ module gamezjh.page {
                             let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
-                                    let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
+                                    let type = MathU.randomRange(1, 2);
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.qipai + type + ".mp3", false);
                                     if (idx == mainIdx) {
                                         this.onNotEnoughMoney();
@@ -948,8 +948,8 @@ module gamezjh.page {
                             let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
-                                    let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
-                                    this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.genzhu + type + ".mp3", false);
+                                    let type = MathU.randomRange(0, 2);
+                                    this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.genzhu + (type == 0 ? "" : type) + ".mp3", false);
                                 }
                             }
                         }
@@ -984,7 +984,7 @@ module gamezjh.page {
                             let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
-                                    let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
+                                    let type = MathU.randomRange(1, 2);
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.bipai + type + ".mp3", false);
                                 }
                             }
@@ -998,7 +998,7 @@ module gamezjh.page {
                             let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
-                                    let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
+                                    let type = MathU.randomRange(1, 2);
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.kanpai + type + ".mp3", false);
                                     if (idx == mainIdx) {
                                         this._zjhMgr.fanpai();
@@ -1039,7 +1039,7 @@ module gamezjh.page {
                                 let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                                 if (unit) {
                                     if (!this._zjhMgr.isReLogin) {
-                                        let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
+                                        let type = MathU.randomRange(1, 2);
                                         this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.guzhuyizhi + type + ".mp3", false);
                                     }
                                 }
@@ -1056,7 +1056,7 @@ module gamezjh.page {
                             let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
-                                    let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
+                                    let type = MathU.randomRange(1, 2);
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.jiazhu + type + ".mp3", false);
                                 }
                             }
