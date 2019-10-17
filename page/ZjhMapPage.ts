@@ -239,7 +239,11 @@ module gamezjh.page {
                     break;
                 case this._viewUI.btn_continue://继续游戏
                     //钱够不够
-                    if (this._game.sceneObjectMgr.mainPlayer.playerInfo.money >= this._needChip[this._zjhStory.mapLv][1]) {
+                    let money = this._game.sceneObjectMgr.mainPlayer.playerInfo.money;
+                    if (this._game.sceneObjectMgr.mainUnit) {
+                        money = this._game.sceneObjectMgr.mainUnit.GetMoney();
+                    }
+                    if (money >= this._needChip[this._zjhStory.mapLv][1]) {
                         if (this._game.sceneObjectMgr.mapInfo instanceof MapInfo) {
                             if (this._valueClip) {
                                 this._valueClip.removeSelf();
@@ -870,7 +874,11 @@ module gamezjh.page {
         //充值弹框
         private onNotEnoughMoney(): void {
             if (!this._game.sceneObjectMgr.mainPlayer) return;
-            if (this._game.sceneObjectMgr.mainPlayer.playerInfo.money < this._needChip[this._zjhStory.mapLv][1]) {
+            let money = this._game.sceneObjectMgr.mainPlayer.playerInfo.money;
+            if (this._game.sceneObjectMgr.mainUnit) {
+                money = this._game.sceneObjectMgr.mainUnit.GetMoney();
+            }
+            if (money < this._needChip[this._zjhStory.mapLv][1]) {
                 TongyongPageDef.ins.alertRecharge(StringU.substitute("老板，您的金币少于{0}哦~\n补充点金币去大杀四方吧~", this._needChip[this._zjhStory.mapLv][1]), () => {
                     this._game.uiRoot.general.open(DatingPageDef.PAGE_CHONGZHI);
                 }, () => {
