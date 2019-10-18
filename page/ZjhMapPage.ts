@@ -549,16 +549,17 @@ module gamezjh.page {
                         this.playTween(viewHead.qifu_type, qifu_index);
                     }
                     //时间戳变化 才加上祈福标志
-                    if (unit.GetQiFuEndTime() > this._game.sync.serverTimeBys) {
+                    if (TongyongUtil.getIsHaveQiFu(unit, this._game.sync.serverTimeBys)) {
                         if (qifu_index && posIdx == qifu_index) {
                             Laya.timer.once(2500, this, () => {
                                 viewHead.img_qifu.visible = true;
                                 viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
                             })
-                        } else {
-                            viewHead.img_qifu.visible = true;
-                            viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
-                        }
+                        } 
+                        // else {
+                        //     viewHead.img_qifu.visible = true;
+                        //     viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
+                        // }
                     } else {
                         viewHead.img_qifu.visible = false;
                         viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
