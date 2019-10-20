@@ -239,7 +239,11 @@ module gamezjh.page {
                     break;
                 case this._viewUI.btn_continue://继续游戏
                     //钱够不够
-                    if (this._game.sceneObjectMgr.mainUnit.GetMoney() >= this._needChip[this._zjhStory.mapLv][1]) {
+                    let money = this._game.sceneObjectMgr.mainPlayer.playerInfo.money;
+                    if (this._game.sceneObjectMgr.mainUnit && this._game.sceneObjectMgr.mapInfo) {
+                        money = this._game.sceneObjectMgr.mainUnit.GetMoney();
+                    }
+                    if (money >= this._needChip[this._zjhStory.mapLv][1]) {
                         if (this._game.sceneObjectMgr.mapInfo instanceof MapInfo) {
                             if (this._valueClip) {
                                 this._valueClip.removeSelf();
@@ -545,16 +549,17 @@ module gamezjh.page {
                         this.playTween(viewHead.qifu_type, qifu_index);
                     }
                     //时间戳变化 才加上祈福标志
-                    if (unit.GetQiFuEndTime() > this._game.sync.serverTimeBys) {
+                    if (TongyongUtil.getIsHaveQiFu(unit, this._game.sync.serverTimeBys)) {
                         if (qifu_index && posIdx == qifu_index) {
                             Laya.timer.once(2500, this, () => {
                                 viewHead.img_qifu.visible = true;
                                 viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
                             })
-                        } else {
-                            viewHead.img_qifu.visible = true;
-                            viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
-                        }
+                        } 
+                        // else {
+                        //     viewHead.img_qifu.visible = true;
+                        //     viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
+                        // }
                     } else {
                         viewHead.img_qifu.visible = false;
                         viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
@@ -870,7 +875,11 @@ module gamezjh.page {
         //充值弹框
         private onNotEnoughMoney(): void {
             if (!this._game.sceneObjectMgr.mainPlayer) return;
-            if (this._game.sceneObjectMgr.mainPlayer.GetMoney() < this._needChip[this._zjhStory.mapLv][1]) {
+            let money = this._game.sceneObjectMgr.mainPlayer.playerInfo.money;
+            if (this._game.sceneObjectMgr.mainUnit && this._game.sceneObjectMgr.mapInfo) {
+                money = this._game.sceneObjectMgr.mainUnit.GetMoney();
+            }
+            if (money < this._needChip[this._zjhStory.mapLv][1]) {
                 TongyongPageDef.ins.alertRecharge(StringU.substitute("老板，您的金币少于{0}哦~\n补充点金币去大杀四方吧~", this._needChip[this._zjhStory.mapLv][1]), () => {
                     this._game.uiRoot.general.open(DatingPageDef.PAGE_CHONGZHI);
                 }, () => {
@@ -912,7 +921,7 @@ module gamezjh.page {
                             let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
-                                    let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
+                                    let type = MathU.randomRange(1, 2);
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.qipai + type + ".mp3", false);
                                     if (idx == mainIdx) {
                                         this.onNotEnoughMoney();
@@ -948,8 +957,8 @@ module gamezjh.page {
                             let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
-                                    let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
-                                    this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.genzhu + type + ".mp3", false);
+                                    let type = MathU.randomRange(0, 2);
+                                    this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.genzhu + (type == 0 ? "" : type) + ".mp3", false);
                                 }
                             }
                         }
@@ -984,7 +993,7 @@ module gamezjh.page {
                             let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
-                                    let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
+                                    let type = MathU.randomRange(1, 2);
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.bipai + type + ".mp3", false);
                                 }
                             }
@@ -998,7 +1007,7 @@ module gamezjh.page {
                             let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
-                                    let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
+                                    let type = MathU.randomRange(1, 2);
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.kanpai + type + ".mp3", false);
                                     if (idx == mainIdx) {
                                         this._zjhMgr.fanpai();
@@ -1039,7 +1048,7 @@ module gamezjh.page {
                                 let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                                 if (unit) {
                                     if (!this._zjhMgr.isReLogin) {
-                                        let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
+                                        let type = MathU.randomRange(1, 2);
                                         this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.guzhuyizhi + type + ".mp3", false);
                                     }
                                 }
@@ -1056,7 +1065,7 @@ module gamezjh.page {
                             let unit = this._game.sceneObjectMgr.getUnitByIdx(idx);
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
-                                    let type = Math.floor((parseInt(unit.GetHeadImg()) - 1) / 10) + 1;
+                                    let type = MathU.randomRange(1, 2);
                                     this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.jiazhu + type + ".mp3", false);
                                 }
                             }
