@@ -555,7 +555,7 @@ module gamezjh.page {
                                 viewHead.img_qifu.visible = true;
                                 viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
                             })
-                        } 
+                        }
                         // else {
                         //     viewHead.img_qifu.visible = true;
                         //     viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
@@ -1260,7 +1260,8 @@ module gamezjh.page {
             let index = (posIdx - idx + 5) % 5;
             let xiQian = this._xiQianList[index];
             if (!xiQian) {
-                this._xiQianList[index] = xiQian = new ZjhXiQianPage(value, this._zjhMgr)
+                this._xiQianList[index] = xiQian = new ZjhXiQianPage(value, this._zjhMgr);
+                xiQian.zOrder = this._viewUI.btn_continue.zOrder + 1;//避免被继续游戏遮挡
                 xiQian.anchorX = xiQian.anchorY = 0.5;
                 xiQian.left = this._xiQianPos[index][0];
                 xiQian.top = this._xiQianPos[index][1];
