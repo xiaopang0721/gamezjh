@@ -1213,7 +1213,9 @@ module gamezjh.page {
             let chip = this._game.sceneObjectMgr.createOfflineObject(SceneRoot.CHIP_MARK, ZjhChip) as ZjhChip;
             chip.setData(posIdx, type, value, index);
             this._totalChip.push(chip);
+            chip.visible = false;
             if (this._zjhMgr.isReLogin) {
+                chip.visible = true;
                 chip.drawChip();
             }
             else {
