@@ -958,7 +958,7 @@ module gamezjh.page {
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
                                     let type = MathU.randomRange(0, 2);
-                                    this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.genzhu + (type == 0 ? "" : type) + ".mp3", false);
+                                    this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.genzhu + type + ".mp3", false);
                                 }
                             }
                         }
