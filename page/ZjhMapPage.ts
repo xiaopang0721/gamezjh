@@ -84,6 +84,8 @@ module gamezjh.page {
                 Path_game_zjh.ui_zjh_sk + "zjh_1.png",
                 Path_game_zjh.ui_zjh_sk + "zjh_2.png",
                 Path_game_zjh.ui_zjh_sk + "zjh_3.png",
+				PathGameTongyong.ui_tongyong_sk + "HeGuan.png",
+				PathGameTongyong.ui_tongyong_sk + "HeGuan2.png",
             ];
         }
 
