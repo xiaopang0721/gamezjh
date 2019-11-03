@@ -84,6 +84,8 @@ module gamezjh.page {
                 Path_game_zjh.ui_zjh_sk + "zjh_1.png",
                 Path_game_zjh.ui_zjh_sk + "zjh_2.png",
                 Path_game_zjh.ui_zjh_sk + "zjh_3.png",
+				PathGameTongyong.ui_tongyong_sk + "HeGuan.png",
+				PathGameTongyong.ui_tongyong_sk + "HeGuan2.png",
             ];
         }
 
@@ -958,7 +960,7 @@ module gamezjh.page {
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
                                     let type = MathU.randomRange(0, 2);
-                                    this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.genzhu + (type == 0 ? "" : type) + ".mp3", false);
+                                    this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.genzhu + type + ".mp3", false);
                                 }
                             }
                         }
@@ -1213,7 +1215,9 @@ module gamezjh.page {
             let chip = this._game.sceneObjectMgr.createOfflineObject(SceneRoot.CHIP_MARK, ZjhChip) as ZjhChip;
             chip.setData(posIdx, type, value, index);
             this._totalChip.push(chip);
+            chip.visible = false;
             if (this._zjhMgr.isReLogin) {
+                chip.visible = true;
                 chip.drawChip();
             }
             else {
