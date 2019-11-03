@@ -84,8 +84,8 @@ module gamezjh.page {
                 Path_game_zjh.ui_zjh_sk + "zjh_1.png",
                 Path_game_zjh.ui_zjh_sk + "zjh_2.png",
                 Path_game_zjh.ui_zjh_sk + "zjh_3.png",
-				PathGameTongyong.ui_tongyong_sk + "HeGuan.png",
-				PathGameTongyong.ui_tongyong_sk + "HeGuan2.png",
+                PathGameTongyong.ui_tongyong_sk + "HeGuan.png",
+                PathGameTongyong.ui_tongyong_sk + "HeGuan2.png",
             ];
         }
 
@@ -439,6 +439,7 @@ module gamezjh.page {
 
         //头像归位
         private headPlace(): void {
+            logd("炸金花 headPlace");
             this._viewUI.view_compare.visible = false;
             this._viewUI.view_pk.visible = false;
             let idx = this._game.sceneObjectMgr.mainUnit.GetIndex();
@@ -625,7 +626,7 @@ module gamezjh.page {
                 this._viewUI.view_effect1.ani1.on(LEvent.COMPLETE, this, this.updateViewWin);
                 this._viewUI.view_xipai.ani_xipai.on(LEvent.COMPLETE, this, this.afterShuffleCards);
                 for (let index = 0; index < 5; index++) {
-                    this._viewUI["view_shu" + index].ani1.on(LEvent.COMPLETE, this, this.headPlace, [index]);
+                    this._viewUI["view_shu" + index].ani1.on(LEvent.COMPLETE, this, this.stopGuZhuYiZhiLose, [index]);
                 }
                 if (this._zjhMgr.isReLogin) {
                     this._zjhStory.mapLv = this._mapInfo.GetMapLevel();
