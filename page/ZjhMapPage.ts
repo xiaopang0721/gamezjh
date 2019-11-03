@@ -325,7 +325,7 @@ module gamezjh.page {
                 this._viewUI.img_auto.skin = Path_game_zjh.ui_zjh + "tu_zdgz.png"//"自动跟注";
                 //防一下，就怕到你的瞬间，点了取消自动跟注
                 if (this._game.sceneObjectMgr.mainUnit.GetIndex() == this._mapInfo.GetCurrentBetPos()) {
-                    this._viewUI.btn_compare.visible = this._mapInfo.GetRound() < 2;
+                    this._viewUI.btn_compare.visible = this._mapInfo.GetRound() > 1;
                     this._viewUI.btn_call.visible = true;
                     this._viewUI.btn_add.visible = true;
                 }
