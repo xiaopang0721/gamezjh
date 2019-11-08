@@ -41,6 +41,8 @@ module gamezjh.page {
 
 				Path.custom_atlas_scene + 'card.atlas',
 				Path.custom_atlas_scene + 'chip.atlas',
+				PathGameTongyong.ui_tongyong_sk + "HeGuan.sk",
+				PathGameTongyong.ui_tongyong_sk + "HeGuan.png",
 				PathGameTongyong.ui_tongyong_sk + "HeGuan2.sk",
 				PathGameTongyong.ui_tongyong_sk + "HeGuan2.png",
 
