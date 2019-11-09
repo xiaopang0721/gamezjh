@@ -1290,6 +1290,7 @@ module gamezjh.page {
                 let preSkin = Path_game_zjh.ui_zjh + "xq_j.png";
                 valueClip.scale(0.8, 0.8);
                 valueClip.anchorX = 0.5;
+                valueClip.zOrder = 99;
                 valueClip.setText(value + "", false, false, preSkin);
                 let index = (this._xiQian[i].idx - idx + 5) % 5;
                 let posX = this._headPos[index][0] + 50;
