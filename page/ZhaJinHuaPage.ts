@@ -133,10 +133,10 @@ module gamezjh.page {
 
 		private initPlayerInfo(): void {
 			for (let index = 0; index < this._difenClipList.length; index++) {
-				this._difenClipList[index].setText(this._difenTmep[index], true);
+				this._difenClipList[index] && this._difenClipList[index].setText(this._difenTmep[index], true);
 			}
 			for (let index = 0; index < this._leastClipList.length; index++) {
-				this._leastClipList[index].setText(this._leastTmep[index], true);
+				this._leastClipList[index] && this._leastClipList[index].setText(this._leastTmep[index], true);
 			}
 		}
 
