@@ -84,6 +84,8 @@ module gamezjh.page {
                 Path_game_zjh.ui_zjh_sk + "zjh_1.png",
                 Path_game_zjh.ui_zjh_sk + "zjh_2.png",
                 Path_game_zjh.ui_zjh_sk + "zjh_3.png",
+                PathGameTongyong.ui_tongyong_sk + "HeGuan.png",
+                PathGameTongyong.ui_tongyong_sk + "HeGuan2.png",
             ];
         }
 
@@ -323,7 +325,7 @@ module gamezjh.page {
                 this._viewUI.img_auto.skin = Path_game_zjh.ui_zjh + "tu_zdgz.png"//"自动跟注";
                 //防一下，就怕到你的瞬间，点了取消自动跟注
                 if (this._game.sceneObjectMgr.mainUnit.GetIndex() == this._mapInfo.GetCurrentBetPos()) {
-                    this._viewUI.btn_compare.visible = true;
+                    this._viewUI.btn_compare.visible = this._mapInfo.GetRound() > 1;
                     this._viewUI.btn_call.visible = true;
                     this._viewUI.btn_add.visible = true;
                 }
@@ -437,6 +439,7 @@ module gamezjh.page {
 
         //头像归位
         private headPlace(): void {
+            logd("炸金花 headPlace");
             this._viewUI.view_compare.visible = false;
             this._viewUI.view_pk.visible = false;
             let idx = this._game.sceneObjectMgr.mainUnit.GetIndex();
@@ -555,7 +558,7 @@ module gamezjh.page {
                                 viewHead.img_qifu.visible = true;
                                 viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
                             })
-                        } 
+                        }
                         // else {
                         //     viewHead.img_qifu.visible = true;
                         //     viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
@@ -623,7 +626,7 @@ module gamezjh.page {
                 this._viewUI.view_effect1.ani1.on(LEvent.COMPLETE, this, this.updateViewWin);
                 this._viewUI.view_xipai.ani_xipai.on(LEvent.COMPLETE, this, this.afterShuffleCards);
                 for (let index = 0; index < 5; index++) {
-                    this._viewUI["view_shu" + index].ani1.on(LEvent.COMPLETE, this, this.headPlace, [index]);
+                    this._viewUI["view_shu" + index].ani1.on(LEvent.COMPLETE, this, this.stopGuZhuYiZhiLose, [index]);
                 }
                 if (this._zjhMgr.isReLogin) {
                     this._zjhStory.mapLv = this._mapInfo.GetMapLevel();
@@ -958,7 +961,7 @@ module gamezjh.page {
                             if (unit) {
                                 if (!this._zjhMgr.isReLogin) {
                                     let type = MathU.randomRange(0, 2);
-                                    this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.genzhu + (type == 0 ? "" : type) + ".mp3", false);
+                                    this._game.playSound(Path_game_zjh.music_zjh + MUSIC_PATH.genzhu + type + ".mp3", false);
                                 }
                             }
                         }
@@ -1213,7 +1216,9 @@ module gamezjh.page {
             let chip = this._game.sceneObjectMgr.createOfflineObject(SceneRoot.CHIP_MARK, ZjhChip) as ZjhChip;
             chip.setData(posIdx, type, value, index);
             this._totalChip.push(chip);
+            chip.visible = false;
             if (this._zjhMgr.isReLogin) {
+                chip.visible = true;
                 chip.drawChip();
             }
             else {
@@ -1260,7 +1265,8 @@ module gamezjh.page {
             let index = (posIdx - idx + 5) % 5;
             let xiQian = this._xiQianList[index];
             if (!xiQian) {
-                this._xiQianList[index] = xiQian = new ZjhXiQianPage(value, this._zjhMgr)
+                this._xiQianList[index] = xiQian = new ZjhXiQianPage(value, this._zjhMgr);
+                xiQian.zOrder = this._viewUI.btn_continue.zOrder + 1;//避免被继续游戏遮挡
                 xiQian.anchorX = xiQian.anchorY = 0.5;
                 xiQian.left = this._xiQianPos[index][0];
                 xiQian.top = this._xiQianPos[index][1];
@@ -1284,6 +1290,7 @@ module gamezjh.page {
                 let preSkin = Path_game_zjh.ui_zjh + "xq_j.png";
                 valueClip.scale(0.8, 0.8);
                 valueClip.anchorX = 0.5;
+                valueClip.zOrder = 99;
                 valueClip.setText(value + "", false, false, preSkin);
                 let index = (this._xiQian[i].idx - idx + 5) % 5;
                 let posX = this._headPos[index][0] + 50;
