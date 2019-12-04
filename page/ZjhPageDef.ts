@@ -31,13 +31,9 @@ module gamezjh.page {
 				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/btn.atlas",
 				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/bipai.atlas",
 				Path_game_zjh.ui_zjh_sk + "zjh_0.png",
-				Path_game_zjh.ui_zjh_sk + "zjh_0.sk",
 				Path_game_zjh.ui_zjh_sk + "zjh_1.png",
-				Path_game_zjh.ui_zjh_sk + "zjh_1.sk",
 				Path_game_zjh.ui_zjh_sk + "zjh_2.png",
-				Path_game_zjh.ui_zjh_sk + "zjh_2.sk",
 				Path_game_zjh.ui_zjh_sk + "zjh_3.png",
-				Path_game_zjh.ui_zjh_sk + "zjh_3.sk",
 
 				Path.custom_atlas_scene + 'card.atlas',
 				Path.custom_atlas_scene + 'chip.atlas',
