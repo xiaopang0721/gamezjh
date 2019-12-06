@@ -65,7 +65,7 @@ module gamezjh.page {
 
 			this.initPlayerInfo()
 			this._viewUI.btn_join.on(LEvent.CLICK, this, this.onBtnClickWithTween);
-			(this._viewUI.view_hud as TongyongHudNqpPage).onOpen(this._game, ZjhPageDef.GAME_NAME, false);
+			(this._viewUI.view_hud as TongyongHudPage).onOpen(this._game, ZjhPageDef.GAME_NAME, false);
 
 			for (let index = 0; index < this._viewUI.box_right.numChildren; index++) {
 				this._viewUI.box_right._childs[index].visible = true;
