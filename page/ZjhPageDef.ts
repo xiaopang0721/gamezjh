@@ -17,6 +17,7 @@ module gamezjh.page {
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_RULE] = ZjhRulePage;
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_XIQIAN] = ZjhXiQianPage;
 			this["__needLoadAsset"] = [
+				DatingPath.atlas_dating_ui + "qifu.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
@@ -25,7 +26,7 @@ module gamezjh.page {
 				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "logo.atlas",
-				DatingPath.atlas_dating_ui + "qifu.atlas",
+				PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
 				Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
 				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/yanhua.atlas",
 				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/btn.atlas",
