@@ -13,6 +13,7 @@ module gamezjh.page {
             this.clip_num1.play();
             this.clip_num2.play();
             this._zjhMgr = ZjhMgr;
+            this.ani1.play(0, false);
             this.updateUI(val);
         }
 
