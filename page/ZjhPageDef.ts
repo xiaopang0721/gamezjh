@@ -4,11 +4,17 @@
 module gamezjh.page {
 	export class ZjhPageDef extends game.gui.page.PageDef {
 		static GAME_NAME: string;
-		//炸金花界面
+		//炸金花场次界面
 		static PAGE_ZHAJINHUA: string = "1";
+		//炸金花游戏界面
 		static PAGE_ZHAJINHUA_MAP: string = "2";
+		//炸金花喜钱界面
+		static PAGE_ZHAJINHUA_XIQIAN: string = "3";
+		//炸金花胜利界面
+		static PAGE_ZHAJINHUA_WIN: string = "4";
+		//炸金花规则界面
 		static PAGE_ZHAJINHUA_RULE: string = "101";
-		static PAGE_ZHAJINHUA_XIQIAN: string = "5";
+
 		static myinit(str: string) {
 			super.myinit(str);
 			ZjhClip.init();
@@ -16,34 +22,42 @@ module gamezjh.page {
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_MAP] = ZjhMapPage;
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_RULE] = ZjhRulePage;
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_XIQIAN] = ZjhXiQianPage;
+			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_WIN] = ZjhWinPage;
+
 			this["__needLoadAsset"] = [
 				DatingPath.atlas_dating_ui + "qifu.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "pai.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/fapai_1.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "logo.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
-				Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
-				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/yanhua.atlas",
-				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/btn.atlas",
-				Path_game_zjh.atlas_game_ui + "zhajinhua/effect/bipai.atlas",
-				Path_game_zjh.ui_zjh_sk + "zjh_0.png",
-				Path_game_zjh.ui_zjh_sk + "zjh_1.png",
-				Path_game_zjh.ui_zjh_sk + "zjh_2.png",
-				Path_game_zjh.ui_zjh_sk + "zjh_3.png",
+                Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
+                Path_game_zjh.atlas_game_ui_zjh + "effect/bipai1.atlas",
+                Path_game_zjh.atlas_game_ui_zjh + "effect/btn.atlas",
+                Path_game_zjh.atlas_game_ui_zjh + "effect/nyl.atlas",
+                Path_game_zjh.atlas_game_ui_zjh + "effect/paixing.atlas",
+                Path_game_zjh.atlas_game_ui_zjh + "effect/shu.atlas",
+                Path_game_zjh.atlas_game_ui_zjh + "effect/xiqian.atlas",
+                Path_game_zjh.atlas_game_ui_zjh + "effect/ying.atlas",
+                Path_game_zjh.atlas_game_ui_zjh + "effect/xzpk.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "pai.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "nyl.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "chongzhi.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong_general + "anniu.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong_general_effect + "qp.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong_general_effect + "guzhu.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong_general_effect + "fapai_1.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong_general_effect + "xipai.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong_general_effect + "biaoshi.atlas",
+				PathGameTongyong.atlas_game_ui_tongyong_general_effect + "ksyx.atlas",
+				PathGameTongyong.atlas_game_ui_tongyong_general_effect + "anniug.atlas",
 
-				Path.custom_atlas_scene + 'card.atlas',
-				Path.custom_atlas_scene + 'chip.atlas',
 				PathGameTongyong.ui_tongyong_sk + "HeGuan.sk",
 				PathGameTongyong.ui_tongyong_sk + "HeGuan.png",
 				PathGameTongyong.ui_tongyong_sk + "HeGuan2.sk",
 				PathGameTongyong.ui_tongyong_sk + "HeGuan2.png",
-
-
+				Path.custom_atlas_scene + 'card.atlas',
+				Path.custom_atlas_scene + 'chip.atlas',
 				Path.map + 'pz_zjh.png',
 				Path.map_far + 'bg_zjh.jpg'
 			]

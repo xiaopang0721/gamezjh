@@ -11,14 +11,6 @@ module gamezjh {
         public static ADD_MONEY_XIQIAN: any;
         //跟注，比牌数值
         public static MAP_NUM_FONT:any;
-        //底分数字初级
-        public static HUD_FONT0: any;
-        //底分数字小资
-        public static HUD_FONT1: any;
-        //底分数字老板
-        public static HUD_FONT2: any;
-        //底分数字富豪
-        public static HUD_FONT3: any;
 
         static init(): void {
             this.MONEY_FONT2 = {
@@ -50,54 +42,14 @@ module gamezjh {
                 space: 0
             };
             
-            //底分数字初级
-            this.HUD_FONT0 = {
-                source: PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
-                url: PathGameTongyong.ui_tongyong_dating + 'clip_dizhu0.png',
-                clipWidth: 22,
-                clipHeight: 27,
-                clipX: 10,
-                space: -5
-            };
-
-            //底分数字小资
-            this.HUD_FONT1 = {
-                source: PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
-                url: PathGameTongyong.ui_tongyong_dating + 'clip_dizhu1.png',
-                clipWidth: 22,
-                clipHeight: 27,
-                clipX: 10,
-                space: -5
-            };
-
-            //底分数字老板
-            this.HUD_FONT2 = {
-                source: PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
-                url: PathGameTongyong.ui_tongyong_dating + 'clip_dizhu2.png',
-                clipWidth: 22,
-                clipHeight: 27,
-                clipX: 10,
-                space: -5
-            };
-
-            //底分数字富豪
-            this.HUD_FONT3 = {
-                source: PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
-                url: PathGameTongyong.ui_tongyong_dating + 'clip_dizhu3.png',
-                clipWidth: 22,
-                clipHeight: 27,
-                clipX: 10,
-                space: -5
-            };
-            
             //HUD数字
             this.MAP_NUM_FONT = {
                 source: Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
                 url: Path_game_zjh.ui_zjh + "clip_gz.png",
-                clipWidth: 27,
-                clipHeight: 34,
+                clipWidth: 19,
+                clipHeight: 28,
                 clipX: 10,
-                space: -10
+                space: 0
             };
             
         }

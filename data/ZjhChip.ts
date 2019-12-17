@@ -19,8 +19,8 @@ module gamezjh.data {
 		}
 
 		sendChip() {
-			let posX = MathU.randomPointInCicle(new Vector2(640, 360), 0, 210).x;
-			let posY = MathU.randomPointInCicle(new Vector2(640, 360), 0, 60).y;
+			let posX = MathU.randomPointInCicle(new Vector2(640, 320), 0, 210).x;
+			let posY = MathU.randomPointInCicle(new Vector2(640, 320), 0, 60).y;
 			this.pos = new Vector2(this._chipPos[this._PlayerIndex][0], this._chipPos[this._PlayerIndex][1]);
 			if (!this.targe_pos) {
 				this.targe_pos = new Vector2();
@@ -46,8 +46,8 @@ module gamezjh.data {
 		}
 
 		drawChip() {
-			let posX = MathU.randomPointInCicle(new Vector2(640, 360), 0, 210).x;
-			let posY = MathU.randomPointInCicle(new Vector2(640, 360), 0, 60).y;
+			let posX = MathU.randomPointInCicle(new Vector2(640, 320), 0, 210).x;
+			let posY = MathU.randomPointInCicle(new Vector2(640, 320), 0, 60).y;
 			this.pos = new Vector2(this._chipPos[this._PlayerIndex][0], this._chipPos[this._PlayerIndex][1]);
 			this.pos.x = posX;
 			this.pos.y = posY;

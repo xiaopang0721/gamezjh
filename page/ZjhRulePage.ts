@@ -9,7 +9,7 @@ module gamezjh.page {
 	}
 
 	export class ZjhRulePage extends game.gui.base.Page {
-		private _viewUI: ui.nqp.game_ui.zhajinhua.ZhaJinHua_GuiZeUI;
+		private _viewUI: ui.ajqp.game_ui.zhajinhua.ZhaJinHua_GuiZeUI;
 		constructor(v: Game, onOpenFunc?: Function, onCloseFunc?: Function) {
 			super(v, onOpenFunc, onCloseFunc);
 			this._isNeedBlack = true;
@@ -17,6 +17,7 @@ module gamezjh.page {
 			this._asset = [
 				Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
+				PathGameTongyong.atlas_game_ui_tongyong_general + "anniu.atlas",
 			];
 		}
 
@@ -30,6 +31,13 @@ module gamezjh.page {
 		// 页面打开时执行函数
 		protected onOpen(): void {
 			super.onOpen();
+
+			this._viewUI.lab_wanfa.vScrollBarSkin = "";
+			this._viewUI.lab_wanfa.vScrollBar.autoHide = true;
+			this._viewUI.lab_wanfa.vScrollBar.elasticDistance = 100;
+			this._viewUI.lab_type.vScrollBarSkin = "";
+			this._viewUI.lab_type.vScrollBar.autoHide = true;
+			this._viewUI.lab_type.vScrollBar.elasticDistance = 100;
 			this._viewUI.btn_tab.selectHandler = Handler.create(this, this.selectHandler, null, false);
 			if (this.dataSource) {
 				this._viewUI.btn_tab.selectedIndex = this.dataSource;
