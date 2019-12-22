@@ -118,7 +118,6 @@ module gamezjh.page {
             }
             this._game.playMusic(Path_game_zjh.music_zjh + MUSIC_PATH.bgMusic);
             this.initClip();
-            this._viewUI.box_left.left = this._game.isFullScreen ? 20 : 0;
         }
 
         //跟注数值
@@ -200,7 +199,24 @@ module gamezjh.page {
             this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_UNIT_ACTION, this, this.onUpdateUnit);
             this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_UNIT_QIFU_TIME_CHANGE, this, this.onUpdateUnit);
             this._game.qifuMgr.on(QiFuMgr.QIFU_FLY, this, this.qifuFly);
+        }
 
+        protected layout(): void {
+            super.layout();
+            if (this._viewUI) {
+                //全面屏
+                if (this._game.isFullScreen) {
+                    this._viewUI.box_top_left.left = 14 + 56;
+                    // this._viewUI.box_room_left.left = 105 + 56;
+                    this._viewUI.box_top_right.right = 28 + 56;
+                    this._viewUI.box_bottom_right.right = 12 + 56;
+                } else {
+                    this._viewUI.box_top_left.left = 14;
+                    // this._viewUI.box_room_left.left = 105;
+                    this._viewUI.box_top_right.right = 28;
+                    this._viewUI.box_bottom_right.right = 12;
+                }
+            }
         }
 
         protected onBtnTweenEnd(e: LEvent, target: any) {
@@ -465,6 +481,7 @@ module gamezjh.page {
 
         //比牌动画播完，播放刺杀动画
         private compareAniStop(): void {
+            Laya.timer.clear(this, this.compareAniStop);
             let idx = this._game.sceneObjectMgr.mainUnit.GetIndex();
             let posIdx1 = (this._posList[0] - idx + 5) % 5; //比
             let posIdx2 = (this._posList[1] - idx + 5) % 5; //被比
@@ -557,6 +574,7 @@ module gamezjh.page {
             this._viewUI.view_compare.box_card0.disabled = false;
             this._viewUI.view_compare.box_card1.disabled = false;
             this._viewUI.view_compare.ani1.play(1, false);
+            Laya.timer.frameOnce(35, this, this.compareAniStop);
         }
 
         //比牌
@@ -628,11 +646,13 @@ module gamezjh.page {
                             Laya.timer.once(2500, this, () => {
                                 viewHead.img_qifu.visible = true;
                                 viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
+                                console.log("unit.GetHeadImg()", unit.GetIndex(), unit.GetHeadImg())
                             })
                         }
                     } else {
                         viewHead.img_qifu.visible = false;
                         viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
+                        console.log("unit.GetHeadImg()", unit.GetIndex(), unit.GetHeadImg())
                     }
                 }
                 if (index >= 1) {
@@ -685,7 +705,7 @@ module gamezjh.page {
             let mapInfo = this._game.sceneObjectMgr.mapInfo;
             this._mapInfo = mapInfo as ZjhMapInfo;
             if (mapInfo) {
-                this._viewUI.view_compare.ani1.on(LEvent.COMPLETE, this, this.compareAniStop);
+                // this._viewUI.view_compare.ani1.on(LEvent.COMPLETE, this, this.compareAniStop);
                 this._viewUI.view_guzhu.ani1.on(LEvent.COMPLETE, this, this.stopGuZhuYiZhi);
                 this._viewUI.view_compare.view_win0.ani1.on(LEvent.COMPLETE, this, this.headPlace);
                 this._viewUI.view_compare.view_win1.ani1.on(LEvent.COMPLETE, this, this.headPlace);
@@ -1641,7 +1661,7 @@ module gamezjh.page {
 
 
         private clearListen() {
-            this._viewUI.view_compare.ani1.off(LEvent.COMPLETE, this, this.compareAniStop);
+            // this._viewUI.view_compare.ani1.off(LEvent.COMPLETE, this, this.compareAniStop);
             this._viewUI.view_guzhu.ani1.off(LEvent.COMPLETE, this, this.stopGuZhuYiZhi);
             this._viewUI.view_compare.view_win0.ani1.off(LEvent.COMPLETE, this, this.headPlace);
             this._viewUI.view_compare.view_win1.ani1.off(LEvent.COMPLETE, this, this.headPlace);
@@ -1680,7 +1700,7 @@ module gamezjh.page {
                 this._viewUI.btn_record.off(LEvent.CLICK, this, this.onBtnClickWithTween);
                 this._viewUI.btn_xiqian.off(LEvent.CLICK, this, this.onBtnClickWithTween);
 
-                this._viewUI.view_compare.ani1.off(LEvent.COMPLETE, this, this.compareAniStop);
+                // this._viewUI.view_compare.ani1.off(LEvent.COMPLETE, this, this.compareAniStop);
                 this._viewUI.view_compare.view_win0.ani1.off(LEvent.COMPLETE, this, this.headPlace);
                 this._viewUI.view_compare.view_win1.ani1.off(LEvent.COMPLETE, this, this.headPlace);
                 this._viewUI.view_xipai.ani_xipai.off(LEvent.COMPLETE, this, this.afterShuffleCards);

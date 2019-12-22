@@ -101,11 +101,11 @@ module gamezjh.page {
 		}
 
 		private initPlayerInfo(): void {
-			for (let i: number = 0; i < this._difenTmep.length; i++) {
-				this._viewUI["txt_difen" + i].text = "" + this._difenTmep[i];
+			for (let index = 0; index < this._difenTmep.length; index++) {
+				this._viewUI["txt_difen" + index].text = this._difenTmep[index] + "";
 			}
-			for (let i: number = 0; i < this._leastTmep.length; i++) {
-				this._viewUI["txt_least" + i].text = "" + this._leastTmep[i];
+			for (let index = 0; index < this._leastTmep.length; index++) {
+				this._viewUI["txt_least" + index].text = this._leastTmep[index] + "";
 			}
 		}
 
@@ -122,8 +122,8 @@ module gamezjh.page {
 				this._viewUI.img_room1.off(LEvent.CLICK, this, this.onBtnClickWithTween);
 				this._viewUI.img_room2.off(LEvent.CLICK, this, this.onBtnClickWithTween);
 				this._viewUI.img_room3.off(LEvent.CLICK, this, this.onBtnClickWithTween);
+				this._game.stopMusic();
 			}
-			this._game.stopMusic();
 
 			super.close();
 		}

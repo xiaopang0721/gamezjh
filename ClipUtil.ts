@@ -9,6 +9,8 @@ module gamezjh {
         public static ADD_MONEY_FONT: any;
         //喜钱
         public static ADD_MONEY_XIQIAN: any;
+        //底分准入通用白字
+        public static WHITE_FONT: any;
         //跟注，比牌数值
         public static MAP_NUM_FONT:any;
 
@@ -40,6 +42,16 @@ module gamezjh {
                 clipHeight: 33,
                 clipX: 10,
                 space: 0
+            };
+            
+            //底分准入通用白字
+            this.WHITE_FONT = {
+                source: PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
+                url: PathGameTongyong.ui_tongyong_hud + 'clip_sz.png',
+                clipWidth: 17,
+                clipHeight: 23,
+                clipX: 11,
+                space: -4
             };
             
             //HUD数字
@@ -229,7 +241,7 @@ module gamezjh {
                 for (let i = 0; i < len; i++) {
                     let clip = this._clipArray[i];
                     let indexStr: string = this._txtStr.charAt(i).toString();
-                    let index = (indexStr == ".") ? 10 : parseInt(indexStr);
+                    let index = (indexStr == "-") ? 11 : (indexStr == ".") ? 10 : parseInt(indexStr);
                     if (!clip) {
                         clip = this.createClip(index);
                         this._container.addChild(clip);

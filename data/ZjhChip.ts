@@ -27,12 +27,8 @@ module gamezjh.data {
 			}
 			this.targe_pos.x = posX;
 			this.targe_pos.y = posY;
-			if (!this.pos) return;
-			this.isUIShow = true;
 			this.visible = true;
-			Laya.Tween.to(this.pos, { x: this.targe_pos.x, y: this.targe_pos.y }, 300, Laya.Ease.circOut, Handler.create(this, () => {
-				this.isUIShow = false;
-			}));
+			super.sendChip();
 		}
 
 		flyChip(index: number) {
