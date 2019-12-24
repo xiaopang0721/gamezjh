@@ -194,9 +194,10 @@ module gamezjh.page {
             this._game.sceneObjectMgr.on(ZjhMapInfo.EVENT_ZJH_BATTLE_CHECK, this, this.updateBattledInfo);
             this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_ADD_UNIT, this, this.onUnitAdd);
             this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_REMOVE_UNIT, this, this.onUnitRemove);
-            this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_UNIT_MONEY_CHANGE, this, this.onUpdateUnit);
             this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_UNIT_CHANGE, this, this.onUpdateUnit);
             this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_UNIT_ACTION, this, this.onUpdateUnit);
+            this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_UNIT_MONEY_CHANGE, this, this.onUpdateUnit);
+            this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_UNIT_HEAD_IMG_CHANGE, this, this.onUpdateUnit);
             this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_UNIT_QIFU_TIME_CHANGE, this, this.onUpdateUnit);
             this._game.qifuMgr.on(QiFuMgr.QIFU_FLY, this, this.qifuFly);
         }
@@ -638,21 +639,16 @@ module gamezjh.page {
                     if (qifu_index && posIdx == qifu_index) {
                         viewHead.qifu_type.visible = true;
                         viewHead.qifu_type.skin = this._qifuTypeImgUrl;
+                        //时间戳变化 才加上祈福标志
                         this.playTween(viewHead.qifu_type, qifu_index);
+                        Laya.timer.once(2500, this, () => {
+                            viewHead.img_qifu.visible = true;
+                            viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
+                        })
                     }
-                    //时间戳变化 才加上祈福标志
-                    if (TongyongUtil.getIsHaveQiFu(unit, this._game.sync.serverTimeBys)) {
-                        if (qifu_index && posIdx == qifu_index) {
-                            Laya.timer.once(2500, this, () => {
-                                viewHead.img_qifu.visible = true;
-                                viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
-                                console.log("unit.GetHeadImg()", unit.GetIndex(), unit.GetHeadImg())
-                            })
-                        }
-                    } else {
-                        viewHead.img_qifu.visible = false;
+                    else {
+                        viewHead.img_qifu.visible = TongyongUtil.getIsHaveQiFu(unit, this._game.sync.serverTimeBys);
                         viewHead.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
-                        console.log("unit.GetHeadImg()", unit.GetIndex(), unit.GetHeadImg())
                     }
                 }
                 if (index >= 1) {
@@ -705,7 +701,6 @@ module gamezjh.page {
             let mapInfo = this._game.sceneObjectMgr.mapInfo;
             this._mapInfo = mapInfo as ZjhMapInfo;
             if (mapInfo) {
-                // this._viewUI.view_compare.ani1.on(LEvent.COMPLETE, this, this.compareAniStop);
                 this._viewUI.view_guzhu.ani1.on(LEvent.COMPLETE, this, this.stopGuZhuYiZhi);
                 this._viewUI.view_compare.view_win0.ani1.on(LEvent.COMPLETE, this, this.headPlace);
                 this._viewUI.view_compare.view_win1.ani1.on(LEvent.COMPLETE, this, this.headPlace);
@@ -953,7 +948,6 @@ module gamezjh.page {
                                     this._viewUI["view_type" + index].visible = true;
                                     this._viewUI["view_type" + index].ani1.play(0, false);
                                     let cardType = this._zjhMgr.checkCardsType(this._showCards[i].cards);
-                                    console.log("...", this._showCards[i].cards)
                                     this._viewUI["view_type" + index].img_type.skin = this._viewUI["view_type" + index].img_type1.skin = this._cardType[cardType];
                                 }
                             }
@@ -1661,7 +1655,6 @@ module gamezjh.page {
 
 
         private clearListen() {
-            // this._viewUI.view_compare.ani1.off(LEvent.COMPLETE, this, this.compareAniStop);
             this._viewUI.view_guzhu.ani1.off(LEvent.COMPLETE, this, this.stopGuZhuYiZhi);
             this._viewUI.view_compare.view_win0.ani1.off(LEvent.COMPLETE, this, this.headPlace);
             this._viewUI.view_compare.view_win1.ani1.off(LEvent.COMPLETE, this, this.headPlace);
@@ -1669,13 +1662,16 @@ module gamezjh.page {
 
             this._game.sceneObjectMgr.off(ZjhMapInfo.EVENT_ZJH_STATUS_CHECK, this, this.updateMapInfo);
             this._game.sceneObjectMgr.off(ZjhMapInfo.EVENT_ZJH_BATTLE_CHECK, this, this.updateBattledInfo);
+
             this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_ADD_UNIT, this, this.onUnitAdd);
             this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_REMOVE_UNIT, this, this.onUnitRemove);
-            this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_UNIT_MONEY_CHANGE, this, this.onUpdateUnit);
             this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_UNIT_CHANGE, this, this.onUpdateUnit);
             this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_UNIT_ACTION, this, this.onUpdateUnit);
             this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_MAPINFO_CHANGE, this, this.onUpdateMap);
+            this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_UNIT_MONEY_CHANGE, this, this.onUpdateUnit);
+            this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_UNIT_HEAD_IMG_CHANGE, this, this.onUpdateUnit);
             this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_UNIT_QIFU_TIME_CHANGE, this, this.onUpdateUnit);
+
             Laya.Tween.clearAll(this);
             Laya.timer.clearAll(this);
         }
@@ -1700,9 +1696,9 @@ module gamezjh.page {
                 this._viewUI.btn_record.off(LEvent.CLICK, this, this.onBtnClickWithTween);
                 this._viewUI.btn_xiqian.off(LEvent.CLICK, this, this.onBtnClickWithTween);
 
-                // this._viewUI.view_compare.ani1.off(LEvent.COMPLETE, this, this.compareAniStop);
                 this._viewUI.view_compare.view_win0.ani1.off(LEvent.COMPLETE, this, this.headPlace);
                 this._viewUI.view_compare.view_win1.ani1.off(LEvent.COMPLETE, this, this.headPlace);
+                this._viewUI.view_xipai.ani_xipai.off(LEvent.COMPLETE, this, this.afterShuffleCards);
                 this._viewUI.view_xipai.ani_xipai.off(LEvent.COMPLETE, this, this.afterShuffleCards);
 
                 this._game.sceneObjectMgr.off(ZjhMapInfo.EVENT_ZJH_STATUS_CHECK, this, this.updateMapInfo);
@@ -1715,7 +1711,7 @@ module gamezjh.page {
                 this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_MAPINFO_CHANGE, this, this.onUpdateMap);
                 this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_UNIT_QIFU_TIME_CHANGE, this, this.onUpdateUnit);
                 this._game.qifuMgr.off(QiFuMgr.QIFU_FLY, this, this.qifuFly);
-                this._viewUI.view_xipai.ani_xipai.off(LEvent.COMPLETE, this, this.afterShuffleCards);
+
                 for (let i = 0; i < 4; i++) {
                     this._viewUI["btn_chip" + i] && this._viewUI["btn_chip" + i].off(LEvent.CLICK, this, this.onBtnChipClick, [i]);
                     this._viewUI["view_player" + (i + 1).toString()] && this._viewUI["view_player" + (i + 1).toString()].off(LEvent.CLICK, this, this.onBtnCompareClick, [i]);

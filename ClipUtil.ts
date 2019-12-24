@@ -57,10 +57,10 @@ module gamezjh {
             //HUD数字
             this.MAP_NUM_FONT = {
                 source: Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
-                url: Path_game_zjh.ui_zjh + "clip_gz.png",
-                clipWidth: 19,
+                url: Path_game_zjh.ui_zjh + "clip_bp.png",
+                clipWidth: 20,
                 clipHeight: 28,
-                clipX: 10,
+                clipX: 11,
                 space: 0
             };
             
