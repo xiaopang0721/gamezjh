@@ -208,12 +208,12 @@ module gamezjh.page {
                 //全面屏
                 if (this._game.isFullScreen) {
                     this._viewUI.box_top_left.left = 14 + 56;
-                    // this._viewUI.box_room_left.left = 105 + 56;
+                    this._viewUI.box_room_left.left = 105 + 56;
                     this._viewUI.box_top_right.right = 28 + 56;
                     this._viewUI.box_bottom_right.right = 12 + 56;
                 } else {
                     this._viewUI.box_top_left.left = 14;
-                    // this._viewUI.box_room_left.left = 105;
+                    this._viewUI.box_room_left.left = 105;
                     this._viewUI.box_top_right.right = 28;
                     this._viewUI.box_bottom_right.right = 12;
                 }
@@ -862,7 +862,7 @@ module gamezjh.page {
             if (statue == MAP_STATUS.MAP_STATE_CARD) {
                 this._viewUI.text_info.text = "牌局号：" + this._mapInfo.GetGameNo();
                 this._viewUI.text_info.visible = true;
-                this._viewUI.text_roomtype.visible = true;
+                this._viewUI.box_room_left.visible = true;
                 this._viewUI.text_maxchip.visible = true;
                 this._viewUI.view_paihe.ani2.play(0, true);
             }
@@ -1322,7 +1322,7 @@ module gamezjh.page {
             playerIcon.img_di.visible = false;
             //飘字
             this.clip_money.setText(Math.abs(value), true, false, preSkin);
-            this.clip_money.centerX = playerIcon.clip_money.centerX;
+            this.clip_money.centerX = playerIcon.clip_money.centerX - 4;
             this.clip_money.centerY = playerIcon.clip_money.centerY;
             playerIcon.clip_money.parent.addChild(this.clip_money);
             playerIcon.clip_money.visible = false;
@@ -1330,7 +1330,7 @@ module gamezjh.page {
             playerIcon.box_clip.y = 57;
             playerIcon.box_clip.visible = true;
             Laya.Tween.clearAll(playerIcon.box_clip);
-            Laya.Tween.to(playerIcon.box_clip, { y: playerIcon.box_clip.y - 50 }, 1000);
+            Laya.Tween.to(playerIcon.box_clip, { y: playerIcon.box_clip.y - 55 }, 700);
             //赢钱动画
             playerIcon.effWin.visible = value > 0;
             value > 0 && playerIcon.effWin.ani1.play(0, false);
@@ -1438,7 +1438,7 @@ module gamezjh.page {
             if (!this._mapInfo) return;
             this._isDeal = true;
             this._viewUI.text_info.visible = true;
-            this._viewUI.text_roomtype.visible = true;
+            this._viewUI.box_room_left.visible = true;
             this._viewUI.text_maxchip.visible = true;
             this._viewUI.view_compare.visible = false;
             this._viewUI.btn_giveup.visible = true;
@@ -1602,8 +1602,8 @@ module gamezjh.page {
             this._viewUI.img_choose.visible = false;
             this._viewUI.img_xiqian.visible = false;
             this._viewUI.text_info.visible = false;
-            this._viewUI.text_roomtype.visible = false;
             this._viewUI.text_maxchip.visible = false;
+            this._viewUI.box_room_left.visible = false;
             this._viewUI.view_guzhu.ani1.stop();
             this._viewUI.view_win.ani1.stop();
             this._viewUI.view_compare.ani1.stop();

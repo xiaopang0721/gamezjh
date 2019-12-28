@@ -54,12 +54,12 @@ module gamezjh {
                 space: -4
             };
             
-            //HUD数字
+            //跟注，比牌数值
             this.MAP_NUM_FONT = {
                 source: Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
                 url: Path_game_zjh.ui_zjh + "clip_bp.png",
-                clipWidth: 20,
-                clipHeight: 28,
+                clipWidth: 16,
+                clipHeight: 22,
                 clipX: 11,
                 space: 0
             };
