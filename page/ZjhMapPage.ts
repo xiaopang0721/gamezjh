@@ -134,10 +134,11 @@ module gamezjh.page {
             }
             if (!this._bpClip) {
                 this._bpClip = new ZjhClip(ZjhClip.MAP_NUM_FONT);
-                this._bpClip.centerX = this._viewUI.cip_bp.centerX;
-                this._bpClip.centerY = this._viewUI.cip_bp.centerY;
-                this._viewUI.cip_bp.parent.addChild(this._bpClip);
-                this._viewUI.cip_bp.visible = false;
+                this._bpClip.centerX = this._viewUI.clip_bp.centerX;
+                this._bpClip.centerY = this._viewUI.clip_bp.centerY;
+                this._viewUI.clip_bp.parent.addChild(this._bpClip);
+                this._viewUI.clip_bp.visible = false;
+                this._bpClip.visible = false;
             }
         }
         private clearClip(): void {
@@ -402,7 +403,15 @@ module gamezjh.page {
                 this._viewUI.img_auto.skin = Path_game_zjh.ui_zjh + "tu_zdgz.png"//"自动跟注";
                 //防一下，就怕到你的瞬间，点了取消自动跟注
                 if (this._game.sceneObjectMgr.mainUnit.GetIndex() == this._mapInfo.GetCurrentBetPos()) {
-                    this._viewUI.btn_compare.visible = this._mapInfo.GetRound() > 1;
+                    if (this._mapInfo.GetRound() < 2) {
+                        this._viewUI.btn_compare.disabled = true;
+                        this._viewUI.img_compare.visible = true;
+                        this._bpClip.visible = false;
+                    } else {
+                        this._viewUI.btn_compare.disabled = false;
+                        this._viewUI.img_compare.visible = false;
+                        this._bpClip.visible = true;
+                    }
                     this._viewUI.btn_call.visible = true;
                     this._viewUI.btn_add.visible = true;
                 }
@@ -540,6 +549,7 @@ module gamezjh.page {
                 this._viewUI.btn_auto.visible = false;
                 this._viewUI.btn_call.visible = false;
                 this._viewUI.btn_add.visible = false;
+                this._viewUI.btn_compare.visible = false;
                 let mPlayer = this._game.sceneObjectMgr.mainPlayer;
                 if (mPlayer) {
                     let val = mPlayer.playerInfo.cards;
@@ -784,19 +794,28 @@ module gamezjh.page {
             }
             this._zjhMgr.cardIndex = 0;
             this._isDeal = true;
-            let betPos = this._mapInfo.GetCurrentBetPos();
-            this._viewUI.btn_giveup.visible = true;
             this._viewUI.view_paihe.ani2.gotoAndStop(0);
+            this._viewUI.btn_giveup.visible = true;
+            this._viewUI.btn_add.visible = true;
+            this._viewUI.btn_compare.visible = true;
+            let betPos = this._mapInfo.GetCurrentBetPos();
+            this._viewUI.btn_call.visible = idx == betPos;
+            this._viewUI.btn_auto.visible = !this._viewUI.btn_call.visible;
+            this._viewUI.btn_add.disabled = idx != betPos;
             if (idx == betPos) {
-                this._viewUI.btn_add.visible = true;
-                this._viewUI.btn_call.visible = true;
                 if (this._mapInfo.GetRound() < 2) {
-                    this._viewUI.btn_compare.visible = false;
+                    this._viewUI.btn_compare.disabled = true;
+                    this._viewUI.img_compare.visible = true;
+                    this._bpClip.visible = false;
                 } else {
-                    this._viewUI.btn_compare.visible = true;
+                    this._viewUI.btn_compare.disabled = false;
+                    this._viewUI.img_compare.visible = false;
+                    this._bpClip.visible = true;
                 }
             } else {
-                this._viewUI.btn_auto.visible = true;
+                this._viewUI.btn_compare.disabled = true;
+                this._viewUI.img_compare.visible = true;
+                this._bpClip.visible = false;
             }
         }
 
@@ -871,17 +890,23 @@ module gamezjh.page {
                     this._viewUI.btn_giveup.visible = true;
                     if (idx != betPos) {
                         this._viewUI.btn_auto.visible = true;
-                        this._viewUI.btn_add.visible = false;
-                        this._viewUI.btn_call.visible = false;
-                        this._viewUI.btn_compare.visible = false;
+                        this._viewUI.btn_call.visible = !this._viewUI.btn_auto.visible;
+                        this._viewUI.btn_add.disabled = true;
+                        this._viewUI.btn_compare.disabled = true;
+                        this._viewUI.img_compare.visible = true;
+                        this._bpClip.visible = false;
                     } else {
-                        this._viewUI.btn_add.visible = true;
-                        this._viewUI.btn_call.visible = true;
                         this._viewUI.btn_auto.visible = false;
+                        this._viewUI.btn_call.visible = !this._viewUI.btn_auto.visible;
+                        this._viewUI.btn_add.disabled = false;
                         if (this._mapInfo.GetRound() < 2) {
-                            this._viewUI.btn_compare.visible = false;
+                            this._viewUI.btn_compare.disabled = true;
+                            this._viewUI.img_compare.visible = true;
+                            this._bpClip.visible = false;
                         } else {
-                            this._viewUI.btn_compare.visible = true;
+                            this._viewUI.btn_compare.disabled = false;
+                            this._viewUI.img_compare.visible = false;
+                            this._bpClip.visible = true;
                         }
                     }
                 }
@@ -1032,6 +1057,7 @@ module gamezjh.page {
                                         this._viewUI.btn_auto.visible = false;
                                         this._viewUI.btn_call.visible = false;
                                         this._viewUI.btn_add.visible = false;
+                                        this._viewUI.btn_compare.visible = false;
                                         this._isAuto = false;
                                         Laya.timer.clear(this, this.autoCall);
                                         !this._viewUI.view_type.visible && this._viewUI.view_type.ani1.play(0, false);
@@ -1491,16 +1517,24 @@ module gamezjh.page {
             let idx = this._game.sceneObjectMgr.mainUnit.GetIndex();
             if (idx == betPos) {
                 this._viewUI.btn_add.visible = true;
-                this._viewUI.btn_call.visible = true;
                 this._viewUI.btn_auto.visible = false;
+                this._viewUI.btn_call.visible = !this._viewUI.btn_auto.visible;
                 if (round < 2) {
-                    this._viewUI.btn_compare.visible = false;
+                    this._viewUI.btn_compare.disabled = true;
+                    this._viewUI.img_compare.visible = true;
+                    this._bpClip.visible = false;
                 } else {
-                    this._viewUI.btn_compare.visible = true;
+                    this._viewUI.btn_compare.disabled = false;
+                    this._viewUI.img_compare.visible = false;
+                    this._bpClip.visible = true;
                 }
                 this._viewUI.view_head0.img_frame.visible = true;
             } else {
+                this._viewUI.btn_add.disabled = true;
                 this._viewUI.btn_auto.visible = true;
+                this._viewUI.btn_compare.disabled = true;
+                this._viewUI.img_compare.visible = true;
+                this._bpClip.visible = false;
             }
             //筹码
             let battleInfoMgr = this._mapInfo.battleInfoMgr;
