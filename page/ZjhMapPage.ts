@@ -209,12 +209,12 @@ module gamezjh.page {
                 //全面屏
                 if (this._game.isFullScreen) {
                     this._viewUI.box_top_left.left = 14 + 56;
-                    this._viewUI.box_room_left.left = 105 + 56;
+                    this._viewUI.box_room_left.left = 115 + 56;
                     this._viewUI.box_top_right.right = 28 + 56;
                     this._viewUI.box_bottom_right.right = 12 + 56;
                 } else {
                     this._viewUI.box_top_left.left = 14;
-                    this._viewUI.box_room_left.left = 105;
+                    this._viewUI.box_room_left.left = 115;
                     this._viewUI.box_top_right.right = 28;
                     this._viewUI.box_bottom_right.right = 12;
                 }
@@ -278,7 +278,7 @@ module gamezjh.page {
                     //钱够不够
                     let money = this._game.sceneObjectMgr.mainPlayer.playerInfo.money;
                     if (this._game.sceneObjectMgr.mainUnit && this._game.sceneObjectMgr.mapInfo) {
-                        money = this._game.sceneObjectMgr.mainUnit.GetMoney();
+                        money = TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney());
                     }
                     if (money >= this._needChip[this._zjhStory.mapLv][1]) {
                         if (this._game.sceneObjectMgr.mapInfo instanceof MapInfo) {
@@ -430,7 +430,7 @@ module gamezjh.page {
             if (!this._game.sceneObjectMgr.mainPlayer) return;
             if (idx == betPos) {
                 //钱够不够
-                let needMoney = this._mapInfo.GetCurChip()
+                let needMoney = TongyongUtil.getMoneyChange(this._mapInfo.GetCurChip());
                 if (this._game.sceneObjectMgr.mainUnit.IsSeeCard())
                     needMoney = needMoney * 2
                 if (this._game.sceneObjectMgr.mainPlayer.playerInfo.money >= needMoney) {
@@ -458,7 +458,7 @@ module gamezjh.page {
                 }
             }
             if (count > 1) {
-                let needMoney = this._mapInfo.GetCurChip()
+                let needMoney = TongyongUtil.getMoneyChange(this._mapInfo.GetCurChip());
                 if (this._game.sceneObjectMgr.mainUnit.IsSeeCard())
                     needMoney = needMoney * 2
                 if (this._game.sceneObjectMgr.mainPlayer.playerInfo.money >= needMoney) {
@@ -637,9 +637,9 @@ module gamezjh.page {
                 if (unit) {
                     let name = getMainPlayerName(unit.GetName());
                     viewHead.txt_name.text = name;
-                    let money = EnumToString.getPointBackNum(unit.GetMoney(), 2);
+                    let money = EnumToString.getPointBackNum(TongyongUtil.getMoneyChange(unit.GetMoney()), 2);
                     viewHead.txt_money.text = money;
-                    this._viewUI["text_total" + index].text = unit.GetTotalChip().toString();
+                    this._viewUI["text_total" + index].text = TongyongUtil.getMoneyChange(unit.GetTotalChip()).toString();
                     //头像框
                     viewHead.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(unit.GetHeadKuangImg());
                     //vip
@@ -757,7 +757,7 @@ module gamezjh.page {
                     this._viewUI.view_head0.img_vip.visible = mPlayer.playerInfo.vip_level > 0;
                     this._viewUI.view_head0.img_vip.skin = TongyongUtil.getVipUrl(mPlayer.playerInfo.vip_level);
                 } else {
-                    money = unitOffline.GetMoney();
+                    money = TongyongUtil.getMoneyChange(unitOffline.GetMoney());
                     this._viewUI.view_head0.txt_name.text = getMainPlayerName(unitOffline.GetName());
                     this._viewUI.view_head0.img_icon.skin = TongyongUtil.getHeadUrl(unitOffline.GetHeadImg(), 2);
                     this._viewUI.view_head0.img_qifu.visible = TongyongUtil.getIsHaveQiFu(unitOffline, this._game.sync.serverTimeBys);
@@ -823,11 +823,11 @@ module gamezjh.page {
             if (!this._mapInfo) return;
             let mainUint = this._game.sceneObjectMgr.mainUnit;
             if (!mainUint) return;
-            this._viewUI.text_money.text = this._mapInfo.GetJackpot().toString();
+            this._viewUI.text_money.text = TongyongUtil.getMoneyChange(this._mapInfo.GetJackpot()).toString();
             let round = this._mapInfo.GetRound() > 20 ? 20 : this._mapInfo.GetRound();
             this._viewUI.text_round.text = round + "/20轮";
             //比牌加注按钮
-            let curBet = this._mapInfo.GetCurChip();
+            let curBet = TongyongUtil.getMoneyChange(this._mapInfo.GetCurChip());
             this._bpClip.visible = false;
             this._gzClip.visible = false;
             if (curBet > 0) {
@@ -838,7 +838,7 @@ module gamezjh.page {
                 this._bpClip.setText(curBet.toString(), true, false, Path_game_zjh.ui_zjh + "tu_bp.png");
                 this._gzClip.visible = true;
                 this._gzClip.setText(curBet.toString(), true, false, Path_game_zjh.ui_zjh + "tu_gz.png");
-                if (this._game.sceneObjectMgr.mainUnit.GetMoney() < curBet) {
+                if (TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney()) < curBet) {
                     this._viewUI.btn_call.disabled = true;
                     this._viewUI.btn_add.disabled = true;
                 }
@@ -846,13 +846,13 @@ module gamezjh.page {
             if (this._zjhStory.mapLv) {
                 for (let i = 0; i < 4; i++) {
                     this._viewUI["btn_chip" + i].disabled = false;
-                    if (this._mapInfo.GetCurChip() >= this._needChip[this._zjhStory.mapLv][0] * this._chipTemp[i]) {
+                    if (TongyongUtil.getMoneyChange(this._mapInfo.GetCurChip()) >= this._needChip[this._zjhStory.mapLv][0] * this._chipTemp[i]) {
                         this._viewUI["btn_chip" + i].disabled = true;
                         this._viewUI["btn_chip" + i].ani1.stop();
                         this._viewUI["btn_chip" + i].img0 = this._viewUI["btn_chip" + i].img1 = false;
                     }
                 }
-                if (this._mapInfo.GetCurChip() >= this._needChip[this._zjhStory.mapLv][0] * this._chipTemp[this._chipTemp.length - 1]) {
+                if (TongyongUtil.getMoneyChange(this._mapInfo.GetCurChip()) >= this._needChip[this._zjhStory.mapLv][0] * this._chipTemp[this._chipTemp.length - 1]) {
                     this._viewUI.btn_add.disabled = true;
                 }
             }
@@ -888,6 +888,8 @@ module gamezjh.page {
             if (statue > MAP_STATUS.MAP_STATE_CARD) {
                 if (!this._game.sceneObjectMgr.mainUnit.IsGiveUp() && !this._game.sceneObjectMgr.mainUnit.IsIsDefeated() && this._isDeal && !this._isGiveUp) {
                     this._viewUI.btn_giveup.visible = true;
+                    this._viewUI.btn_add.visible = true;
+                    this._viewUI.btn_compare.visible = true;
                     if (idx != betPos) {
                         this._viewUI.btn_auto.visible = true;
                         this._viewUI.btn_call.visible = !this._viewUI.btn_auto.visible;
@@ -999,7 +1001,7 @@ module gamezjh.page {
             if (!this._game.sceneObjectMgr.mainPlayer) return;
             let money = this._game.sceneObjectMgr.mainPlayer.playerInfo.money;
             if (this._game.sceneObjectMgr.mainUnit && this._game.sceneObjectMgr.mapInfo) {
-                money = this._game.sceneObjectMgr.mainUnit.GetMoney();
+                money = TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney());
             }
             if (money < this._needChip[this._zjhStory.mapLv][1]) {
                 TongyongPageDef.ins.alertRecharge(StringU.substitute("老板，您的金币少于{0}哦~\n补充点金币去大杀四方吧~", this._needChip[this._zjhStory.mapLv][1]), () => {
@@ -1158,9 +1160,8 @@ module gamezjh.page {
                                             this._viewUI["btn_chip" + chipId].btn_num.label = this._chipTemp[chipId] * this._needChip[this._zjhStory.mapLv][0] * 2;
                                             this._viewUI["btn_chip" + chipId].btn_num.skin = StringU.substitute(PathGameTongyong.ui_tongyong_general + "tu_cm{0}.png", chipId);
                                         }
-                                        let curBet = this._mapInfo.GetCurChip();
+                                        let curBet = TongyongUtil.getMoneyChange(this._mapInfo.GetCurChip());
                                         if (curBet > 0) {
-                                            this._bpClip.visible = true;
                                             this._bpClip.setText((2 * curBet).toString(), true, false, Path_game_zjh.ui_zjh + "tu_bp.png");
                                             this._gzClip.visible = true;
                                             this._gzClip.setText((2 * curBet).toString(), true, false, Path_game_zjh.ui_zjh + "tu_gz.png");

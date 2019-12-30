@@ -7,7 +7,7 @@ module gamezjh.data {
 			super();
 		}
 
-		private _chipPos = [[240, 650], [1200, 473], [1200, 276], [80, 276], [80, 473]];  //筹码位置
+		private _chipPos = [[270, 650], [1200, 473], [1200, 276], [80, 276], [80, 473]];  //筹码位置
 		private _PlayerIndex: number;
 		setData(posId: number, type: number, value: number, index: number) {
 			this.size = 0.5;
