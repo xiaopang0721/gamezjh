@@ -76,7 +76,6 @@ module gamezjh.page {
             super(v, onOpenFunc, onCloseFunc);
             this._isNeedDuang = false;
             this._asset = [
-                DatingPath.atlas_dating_ui + "qifu.atlas",
                 Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
                 Path_game_zjh.atlas_game_ui_zjh + "effect/bipai1.atlas",
                 Path_game_zjh.atlas_game_ui_zjh + "effect/btn.atlas",

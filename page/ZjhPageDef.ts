@@ -25,7 +25,6 @@ module gamezjh.page {
 			PageDef._pageClassMap[ZjhPageDef.PAGE_ZHAJINHUA_WIN] = ZjhWinPage;
 
 			this["__needLoadAsset"] = [
-				DatingPath.atlas_dating_ui + "qifu.atlas",
                 Path_game_zjh.atlas_game_ui + "zhajinhua.atlas",
                 Path_game_zjh.atlas_game_ui_zjh + "effect/bipai1.atlas",
                 Path_game_zjh.atlas_game_ui_zjh + "effect/btn.atlas",
@@ -35,6 +34,7 @@ module gamezjh.page {
                 Path_game_zjh.atlas_game_ui_zjh + "effect/xiqian.atlas",
                 Path_game_zjh.atlas_game_ui_zjh + "effect/ying.atlas",
                 Path_game_zjh.atlas_game_ui_zjh + "effect/xzpk.atlas",
+				
                 PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
